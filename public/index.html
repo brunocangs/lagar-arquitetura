@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://bundle.run/css-scroll-snap-polyfill@0.1.2"></script>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta
@@ -12,6 +13,16 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+    <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.

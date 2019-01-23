@@ -1,3 +1,14 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-family: Avenir, sans-serif;
+}
 .App {
   text-align: center;
 }
@@ -22,11 +33,44 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: Avenir;
+  src: url('./assets/fonts/AvenirLTStd-Medium.otf') format('otf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url('./assets/fonts/AvenirLTStd-MediumOblique.otf') format('otf');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url('./assets/fonts/AvenirLTStd-Book.otf') format('otf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url('./assets/fonts/AvenirLTStd-BookOblique.otf') format('otf');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url('./assets/fonts/AvenirLTStd-Light.otf') format('otf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url('./assets/fonts/AvenirLTStd-LightOblique.otf') format('otf');
+  font-weight: 300;
+  font-style: italic;
 }
