@@ -1,14 +1,13 @@
 *, *::after, *::before {
   box-sizing: border-box;
+  font-family: Avenir, sans-serif;
 }
 
 html, body {
   margin: 0;
   padding: 0;
 }
-p {
-  font-family: Avenir, sans-serif;
-}
+
 .App {
   text-align: center;
 }
@@ -35,42 +34,49 @@ p {
 
 @font-face {
   font-family: Avenir;
-  src: url('./assets/fonts/AvenirLTStd-Medium.otf') format('otf');
+  src: url(./assets/fonts/AvenirNextLtPro-Bold.otf);
+  font-weight: 600;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url(./assets/fonts/AvenirLTStd-Medium.otf);
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: Avenir;
-  src: url('./assets/fonts/AvenirLTStd-MediumOblique.otf') format('otf');
+  src: url(./assets/fonts/AvenirLTStd-MediumOblique.otf);
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: Avenir;
-  src: url('./assets/fonts/AvenirLTStd-Book.otf') format('otf');
+  src: url(./assets/fonts/AvenirLTStd-Book.otf);
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: Avenir;
-  src: url('./assets/fonts/AvenirLTStd-BookOblique.otf') format('otf');
+  src: url(./assets/fonts/AvenirLTStd-BookOblique.otf);
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: Avenir;
-  src: url('./assets/fonts/AvenirLTStd-Light.otf') format('otf');
+  src: url(./assets/fonts/AvenirLTStd-Light.otf);
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Avenir;
-  src: url('./assets/fonts/AvenirLTStd-LightOblique.otf') format('otf');
+  src: url(./assets/fonts/AvenirLTStd-LightOblique.otf);
   font-weight: 300;
   font-style: italic;
 }

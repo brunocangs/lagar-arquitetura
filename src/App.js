@@ -1,39 +1,29 @@
-import React from "react";
-import styled from "styled-components";
-
-const Snapper = styled.div`
-  height: 85vh;
-  background-color: rgb(
-    ${() => Math.floor(Math.random() * 255)},
-    ${() => Math.floor(Math.random() * 255)},
-    ${() => Math.floor(Math.random() * 255)}
-  );
-`;
+import React from 'react';
+import {ThemeProvider} from 'styled-components';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import store from './store';
+import Routes from './routes';
+import './App.css';
 
 export default class App extends React.Component {
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
   render() {
-    
     return (
-      <>
-        <Snapper>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet doloremque quibusdam sed dolore eligendi, dicta earum culpa ratione corrupti quasi, eum perferendis beatae quam consequatur temporibus dignissimos? Laudantium officiis, tempora quibusdam fugit rem nesciunt deleniti amet, expedita atque minima velit, numquam totam voluptas soluta nobis! Tempore possimus voluptatem harum ex?</p>
-        </Snapper>
-        <Snapper>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet doloremque quibusdam sed dolore eligendi, dicta earum culpa ratione corrupti quasi, eum perferendis beatae quam consequatur temporibus dignissimos? Laudantium officiis, tempora quibusdam fugit rem nesciunt deleniti amet, expedita atque minima velit, numquam totam voluptas soluta nobis! Tempore possimus voluptatem harum ex?</p>
-        </Snapper>
-        <Snapper>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet doloremque quibusdam sed dolore eligendi, dicta earum culpa ratione corrupti quasi, eum perferendis beatae quam consequatur temporibus dignissimos? Laudantium officiis, tempora quibusdam fugit rem nesciunt deleniti amet, expedita atque minima velit, numquam totam voluptas soluta nobis! Tempore possimus voluptatem harum ex?</p>
-        </Snapper>
-        <Snapper>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet doloremque quibusdam sed dolore eligendi, dicta earum culpa ratione corrupti quasi, eum perferendis beatae quam consequatur temporibus dignissimos? Laudantium officiis, tempora quibusdam fugit rem nesciunt deleniti amet, expedita atque minima velit, numquam totam voluptas soluta nobis! Tempore possimus voluptatem harum ex?</p>
-        </Snapper>
-        <Snapper>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet doloremque quibusdam sed dolore eligendi, dicta earum culpa ratione corrupti quasi, eum perferendis beatae quam consequatur temporibus dignissimos? Laudantium officiis, tempora quibusdam fugit rem nesciunt deleniti amet, expedita atque minima velit, numquam totam voluptas soluta nobis! Tempore possimus voluptatem harum ex?</p>
-        </Snapper>
-      </>
+      <ThemeProvider 
+        theme={lagarTheme}
+      >
+        <Provider store={store}>
+          <Router>
+            <Routes />
+          </Router>
+        </Provider>
+      </ThemeProvider>
     );
   }
 }
+
+const lagarTheme = {
+  black: '#000',
+  grey: '#dcdcdc',
+  olive: '#7d9157'
+};
