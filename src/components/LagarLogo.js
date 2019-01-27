@@ -1,9 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default (props) => {
   return (
     <svg 
+      className={props.className}
       height={props.size}
+      style={props.style}
       viewBox="0 0 284 284"
       width={props.size}
       xmlns="http://www.w3.org/2000/svg"
