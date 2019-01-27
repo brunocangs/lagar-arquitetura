@@ -12,18 +12,19 @@ export default class App extends React.Component {
       <ThemeProvider 
         theme={lagarTheme}
       >
-        <Provider store={store}>
-          <Router>
+        <Router>
+          <Provider store={store}>
             <Routes />
-          </Router>
-        </Provider>
+          </Provider>
+        </Router>
       </ThemeProvider>
     );
   }
 }
 
 const lagarTheme = {
-  black: '#000',
-  grey: '#dcdcdc',
-  olive: '#7d9157'
+  primary: '#000',
+  gray: '#dcdcdc',
+  secondary: '#7d9157',
+  white: '#FFF'
 };
