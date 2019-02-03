@@ -24,7 +24,7 @@ export default class App extends React.Component {
 
 const lagarTheme = {
   primary: '#000',
-  gray: '#dcdcdc',
+  gray: '#f0f0f0',
   secondary: '#7d9157',
   white: '#FFF'
 };

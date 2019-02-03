@@ -95,22 +95,27 @@ class Main extends React.Component {
         order: Infinity
       }).url;
       return (
-        // <Link to={`/projeto/${project.slug}`}>
         <Banner 
           key={i}
           url={mainImage}
         >
-          <TitleWrapper>
-            <Container>
-              <LagarLogo 
-                classNameBottom={'fadeInSlideLeft'}
-                classNameTop={'fadeInSlideRight'}
-                size={80}
-                style={{height: '100%', zIndex: 22, overflow: 'visible'}}
-              />
-              <Title>{project.name}</Title>
-            </Container>
-          </TitleWrapper>
+          <Link to={{
+            pathname: `/projeto/${project.id}`,
+            state: {project}
+          }}
+          >
+            <TitleWrapper>
+              <Container>
+                <LagarLogo 
+                  classNameBottom={'fadeInSlideLeft'}
+                  classNameTop={'fadeInSlideRight'}
+                  size={80}
+                  style={{height: '100%', zIndex: 22, overflow: 'visible'}}
+                />
+                <Title>{project.name}</Title>
+              </Container>
+            </TitleWrapper>
+          </Link>
         </Banner>
         // </Link>
       );

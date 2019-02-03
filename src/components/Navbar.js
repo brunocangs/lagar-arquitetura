@@ -59,9 +59,7 @@ const MenuItem = styled.li`
     z-index: -1
   }
   &:hover {
-    &::before {
-      width: 100%;
-    }
+    background-color: ${props => props.theme.secondary}
   }  
   &:last-child {
       border-right: none;
