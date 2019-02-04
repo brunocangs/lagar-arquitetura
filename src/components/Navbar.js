@@ -77,6 +77,14 @@ const Hamburger = styled.div`
   }
 `;
 
+const Dropdown = styled.div`
+
+`;
+
+const DropdownItem = styled.div`
+
+`;
+
 class Navbar extends React.Component {
   componentDidMount() {
     this.props.getProjects();
@@ -92,6 +100,11 @@ class Navbar extends React.Component {
             <Link to='/projetos'>
               projetos
             </Link>
+            <Dropdown>
+              <DropdownItem>Todos</DropdownItem>
+              <DropdownItem>Comercial</DropdownItem>
+              <DropdownItem>Residencial</DropdownItem>
+            </Dropdown>
           </MenuItem>
           <MenuItem>
             <Link to='/escritorio'>
@@ -102,7 +115,8 @@ class Navbar extends React.Component {
             <Link to='/midia'>
               mídia
             </Link>
-          </MenuItem><MenuItem>
+          </MenuItem>
+          <MenuItem>
             <Link to='/contato'>
               contato
             </Link>

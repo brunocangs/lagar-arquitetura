@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "lagar-dev"
+    "development": "lagar-dev",
+    "production": "site-lagar"
   }
 }
