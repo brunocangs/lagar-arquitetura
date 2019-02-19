@@ -1,4 +1,5 @@
 import {types} from '../actions';
+
 const {
   CREATE_PROJECTS,
   DELETE_PROJECTS,
@@ -7,11 +8,13 @@ const {
   GET_SINGLE_PROJECT,
   UPDATE_PROJECTS
 } = types;
+
 const DEFAULT_STATE = {
   items: [],
   item: {},
   loading: false
 };
+
 export default (state = DEFAULT_STATE, {type, payload}) => {
   switch (type) {
   case GET_PROJECTS:

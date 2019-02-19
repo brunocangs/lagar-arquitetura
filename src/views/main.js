@@ -117,7 +117,6 @@ class Main extends React.Component {
             </TitleWrapper>
           </Link>
         </Banner>
-        // </Link>
       );
     });
   }

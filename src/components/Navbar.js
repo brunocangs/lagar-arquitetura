@@ -59,7 +59,10 @@ const MenuItem = styled.li`
     z-index: -1
   }
   &:hover {
-    background-color: ${props => props.theme.secondary}
+    background-color: ${props => props.theme.secondary};
+    > * {
+      display: block;
+    }
   }  
   &:last-child {
       border-right: none;
@@ -78,11 +81,31 @@ const Hamburger = styled.div`
 `;
 
 const Dropdown = styled.div`
-
+ position: absolute;
+ display: none;
+ top: 100%;
+ width: 100%;
+ background-color: ${props => props.theme.white}
+ left: 50%;
+ transform: translateX(-50%);
 `;
 
 const DropdownItem = styled.div`
-
+  font-size: 0.75em;
+  position: relative;
+  padding: 8px 0;
+  &::after {
+    content: ' ';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    border-bottom: ${props => props.noBorder ? 'none' : '1px solid black'};
+  }
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `;
 
 class Navbar extends React.Component {
@@ -97,13 +120,23 @@ class Navbar extends React.Component {
         </Link>
         <Menu>
           <MenuItem>
-            <Link to='/projetos'>
               projetos
-            </Link>
             <Dropdown>
-              <DropdownItem>Todos</DropdownItem>
-              <DropdownItem>Comercial</DropdownItem>
-              <DropdownItem>Residencial</DropdownItem>
+              <Link to='/projetos'>
+                <DropdownItem>
+                Todos
+                </DropdownItem>
+              </Link>
+              <Link to='/projetos/comercial'>
+                <DropdownItem>
+                Comercial
+                </DropdownItem>
+              </Link>
+              <Link to='/projetos/residencial'>
+                <DropdownItem noBorder>
+                Residencial
+                </DropdownItem>
+              </Link>
             </Dropdown>
           </MenuItem>
           <MenuItem>
