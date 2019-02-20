@@ -35,12 +35,33 @@ const Marker = styled.div`
   opacity: ${props => props.current !== props.self ? 0.6 : 1};
   margin: 6px;
 `;
+
+const Content = styled.div`
+  margin-top: 12px;
+`;
+
+const Title = styled.h1`
+  font-size: 30px;
+  text-align: center;
+  padding-top: 18px;
+  font-weight: normal;
+`;
+
+const Description = styled.p`
+  max-width: 80%;
+  text-align: center;
+  margin: auto;
+  font-size: 18px;
+  padding-bottom: 16px;
+`;
+
 export default class ProjectView extends React.Component {
   state = {
     index: 0
   }
   render () {
     const {project} = this.props;
+    console.log(project);
     if (!project || !project.photos) return null;
     return (
       <>
@@ -71,6 +92,10 @@ export default class ProjectView extends React.Component {
               );
             })}
           </Swipeable>
+          <Content>
+            <Title>{project.name}</Title>
+            <Description>{project.description}</Description>
+          </Content>
         </PhotoWrapper>
       </>
     );

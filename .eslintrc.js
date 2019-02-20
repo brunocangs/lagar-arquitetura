@@ -51,6 +51,7 @@ module.exports = {
         "react/jsx-tag-spacing": [2, {beforeSelfClosing: "always"}],
         "react/jsx-wrap-multilines": [2, {return: "parens-new-line", declaration: "parens-new-line", arrow: "parens-new-line"}],
         "react/jsx-uses-vars": [1],
-        "react/jsx-uses-react": [1]
+        "react/jsx-uses-react": [1],
+        "no-console": 0
     }
 };

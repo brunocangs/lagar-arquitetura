@@ -3,6 +3,9 @@ import styled, {withTheme} from 'styled-components';
 import Link from './Link';
 import {connect} from 'react-redux';
 import {getProjects} from '../actions';
+import {withRouter, matchPath} from 'react-router-dom';
+import MobileDropdown from './MobileDropdown';
+
 
 const Nav = styled.nav`
     height: 90px;
@@ -14,13 +17,20 @@ const Nav = styled.nav`
     top: 0;
     background-color: ${props => props.theme.gray};
     z-index: 99999;
+    @media screen and (max-width: 768px) {
+      padding: 20px 16px
+    }
 `;
 const Logo = styled.img`
+  vertical-align: middle;
   width: auto;
   height: 50px;
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  @media screen and (max-width: 768px) {
+    height: 35px;
+  }
 `;
 
 const Menu = styled.ul`
@@ -30,13 +40,20 @@ const Menu = styled.ul`
   margin: 0;
   padding: 0;
   margin-left: 30px;
-  margin-right: 20px;
-  @media (max-width: 900px) {
+  margin-right: 12px;
+  @media (max-width: 768px) {
     display: none;
   }
 `;
 
-const MenuItem = styled.li`
+const MenuItem = withRouter(styled.li`
+  background-color: ${props => {
+    const match = matchPath(props.location.pathname, {
+      path: props.path,
+      exact: props.exact
+    });
+    return match ? props.theme.secondary : props.theme.gray ;
+  }};
   border-right: 1px solid black;
   padding: 0px 12px;
   font-size: 16px;
@@ -68,14 +85,16 @@ const MenuItem = styled.li`
       border-right: none;
   }
   transition: all 0.225s ease-in-out;
-`;
+`);
 
 const Hamburger = styled.div`
   margin-right: 16px;
   height: ${props => props.size}px;
   width: ${props => props.size}px;
   background-image: url(${require('../assets/images/bars-solid.svg')});
-  @media (min-width: 901px) {
+  background-repeat: no-repeat;
+  background-position: cover;
+  @media (min-width: 769px) {
     display: none;
   }
 `;
@@ -85,7 +104,7 @@ const Dropdown = styled.div`
  display: none;
  top: 100%;
  width: 100%;
- background-color: ${props => props.theme.white}
+ background-color: ${props => props.theme.white};
  left: 50%;
  transform: translateX(-50%);
 `;
@@ -114,49 +133,60 @@ class Navbar extends React.Component {
   }
   render () {
     return (
-      <Nav {...this.props}>
-        <Link to='/'>
-          <Logo src={require('../assets/images/lagar_logo_horizontal.svg')} />
-        </Link>
-        <Menu>
-          <MenuItem>
+      <>
+        <Nav {...this.props}>
+          <Link to='/'>
+            <Logo src={require('../assets/images/lagar_logo_horizontal.svg')} />
+          </Link>
+          <Menu>
+            <MenuItem exact
+              path='/projetos/:type?'
+            >
               projetos
-            <Dropdown>
-              <Link to='/projetos'>
-                <DropdownItem>
+              <Dropdown>
+                <Link to='/projetos'>
+                  <DropdownItem>
                 Todos
-                </DropdownItem>
-              </Link>
-              <Link to='/projetos/comercial'>
-                <DropdownItem>
+                  </DropdownItem>
+                </Link>
+                <Link to='/projetos/comercial'>
+                  <DropdownItem>
                 Comercial
-                </DropdownItem>
-              </Link>
-              <Link to='/projetos/residencial'>
-                <DropdownItem noBorder>
+                  </DropdownItem>
+                </Link>
+                <Link to='/projetos/residencial'>
+                  <DropdownItem noBorder>
                 Residencial
-                </DropdownItem>
-              </Link>
-            </Dropdown>
-          </MenuItem>
-          <MenuItem>
-            <Link to='/escritorio'>
+                  </DropdownItem>
+                </Link>
+              </Dropdown>
+            </MenuItem>
+            <MenuItem exact
+              path='/escritorio'
+            >
+              <Link to='/escritorio'>
               escritório
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to='/midia'>
+              </Link>
+            </MenuItem>
+            <MenuItem exact
+              path='/midia'
+            >
+              <Link to='/midia'>
               mídia
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to='/contato'>
+              </Link>
+            </MenuItem>
+            <MenuItem exact
+              path='/contato'
+            >
+              <Link to='/contato'>
               contato
-            </Link>
-          </MenuItem>
-        </Menu>
-        <Hamburger size={32} />
-      </Nav>
+              </Link>
+            </MenuItem>
+          </Menu>
+          <Hamburger size={32} />
+        </Nav>
+        <MobileDropdown open />
+      </>
     );
   }
 }

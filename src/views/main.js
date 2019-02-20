@@ -19,7 +19,7 @@ const fadeIn = keyframes`
 `;
 
 const Banner = styled.div`
-  height: calc(100vh - 80px);
+  height: calc(100vh - 90px);
   width: 100%;
   background-image: url(${props => props.url});
   background-size: cover;
@@ -28,6 +28,9 @@ const Banner = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: 768px) {
+    height: calc(100vw * 9 / 16);
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -84,7 +87,7 @@ class Main extends React.Component {
   }
   render() {
     if (this.props.loading)     {
-      return <div>loading...</div>;
+      return <div style={{}}>loading...</div>;
     }
     return this.props.items.map((project, i) => {
       const mainImage = project.photos.reduce((prev, curr) => {

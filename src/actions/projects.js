@@ -8,9 +8,9 @@ import {
 } from './types';
 import { projects } from '../data';
 
-export const getProjects = () => (dispatch) => {
+export const getProjects = (filter) => (dispatch) => {
   dispatch({ type: LOADING_PROJECTS, payload: true });
-  projects.get()
+  projects.get(filter)
     .then((value) => {
       const values = value.docs.map(item => {
         return {
