@@ -65,8 +65,8 @@ const Container = styled.div`
 const Title = styled.p`
   position: absolute;
   top:0;
-  left: 0;
-  right: 0;
+  left: 10%;
+  right: 10%;
   bottom: 0;
   color: ${props => props.theme.white};
   font-size: 32px;
@@ -75,8 +75,12 @@ const Title = styled.p`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  text-align: center;
   animation: ${fadeIn} 0.4s 1.1s ease-in paused both;
   transform-origin: center;
+  @media screen and (max-width: 768px){
+    font-size: 28px;
+  }
 `;
 
 class Main extends React.Component {

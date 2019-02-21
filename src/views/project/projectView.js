@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Swipeable from 'react-swipeable-views';
+import {virtualize} from 'react-swipeable-views-utils';
 
 const Photo = styled.div`
     width: 100%;
-    height: calc(100vh - 90px - 100px);
+    height: calc(100vw * 9 / 16);
+    max-height: calc(100vh - 90px - 100px);
     background-image: url(${props => props.url});
     background-position: center center;
     background-size: cover;
@@ -22,7 +24,7 @@ const MarkerWrapper = styled.div`
   right: 0;
   display: flex;
   justify-content: center;
-  z-index: 99;
+  z-index: 9;
   padding-top: 12px;
 `;
 
@@ -58,6 +60,9 @@ const Description = styled.p`
 export default class ProjectView extends React.Component {
   state = {
     index: 0
+  }
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
   render () {
     const {project} = this.props;

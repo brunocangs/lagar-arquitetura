@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, {withTheme} from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import Link from './Link';
-import {connect} from 'react-redux';
-import {getProjects} from '../actions';
-import {withRouter, matchPath} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getProjects } from '../actions';
+import { withRouter, matchPath } from 'react-router-dom';
 import MobileDropdown from './MobileDropdown';
 
 
@@ -16,7 +16,7 @@ const Nav = styled.nav`
     position: sticky;
     top: 0;
     background-color: ${props => props.theme.gray};
-    z-index: 99999;
+    z-index: 99;
     @media screen and (max-width: 768px) {
       padding: 20px 16px
     }
@@ -46,13 +46,13 @@ const Menu = styled.ul`
   }
 `;
 
-const MenuItem = withRouter(styled.li`
+const MenuItemHelper = styled.li`
   background-color: ${props => {
     const match = matchPath(props.location.pathname, {
       path: props.path,
       exact: props.exact
     });
-    return match ? props.theme.secondary : props.theme.gray ;
+    return match ? props.theme.secondary : props.theme.gray;
   }};
   border-right: 1px solid black;
   padding: 0px 12px;
@@ -85,15 +85,16 @@ const MenuItem = withRouter(styled.li`
       border-right: none;
   }
   transition: all 0.225s ease-in-out;
-`);
+`;
+
+const MenuItem = withRouter(MenuItemHelper);
 
 const Hamburger = styled.div`
-  margin-right: 16px;
+  margin-right: 8px;
   height: ${props => props.size}px;
   width: ${props => props.size}px;
   background-image: url(${require('../assets/images/bars-solid.svg')});
   background-repeat: no-repeat;
-  background-position: cover;
   @media (min-width: 769px) {
     display: none;
   }
@@ -128,10 +129,18 @@ const DropdownItem = styled.div`
 `;
 
 class Navbar extends React.Component {
+  state = {
+    open: false
+  }
   componentDidMount() {
     this.props.getProjects();
   }
-  render () {
+  toggleMenu = () => {
+    this.setState(state => ({
+      open: !state.open
+    }));
+  }
+  render() {
     return (
       <>
         <Nav {...this.props}>
@@ -146,17 +155,17 @@ class Navbar extends React.Component {
               <Dropdown>
                 <Link to='/projetos'>
                   <DropdownItem>
-                Todos
+                    Todos
                   </DropdownItem>
                 </Link>
                 <Link to='/projetos/comercial'>
                   <DropdownItem>
-                Comercial
+                    Comercial
                   </DropdownItem>
                 </Link>
                 <Link to='/projetos/residencial'>
                   <DropdownItem noBorder>
-                Residencial
+                    Residencial
                   </DropdownItem>
                 </Link>
               </Dropdown>
@@ -165,27 +174,33 @@ class Navbar extends React.Component {
               path='/escritorio'
             >
               <Link to='/escritorio'>
-              escritório
+                escritório
               </Link>
             </MenuItem>
             <MenuItem exact
               path='/midia'
             >
               <Link to='/midia'>
-              mídia
+                mídia
               </Link>
             </MenuItem>
             <MenuItem exact
               path='/contato'
             >
               <Link to='/contato'>
-              contato
+                contato
               </Link>
             </MenuItem>
           </Menu>
-          <Hamburger size={32} />
+          <Hamburger 
+            onClick={this.toggleMenu}
+            size={32}
+          />
         </Nav>
-        <MobileDropdown open />
+        <MobileDropdown 
+          onClose={this.toggleMenu}
+          open={this.state.open}
+        />
       </>
     );
   }
@@ -195,6 +210,6 @@ const mapDispatchToProps = {
   getProjects
 };
 
-const mapStateToProps = ({projectReducer}) => ({...projectReducer});
+const mapStateToProps = ({ projectReducer }) => ({ ...projectReducer });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Navbar));
