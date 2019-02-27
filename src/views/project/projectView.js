@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Swipeable from 'react-swipeable-views';
-import {virtualize} from 'react-swipeable-views-utils';
 
 const Photo = styled.div`
     width: 100%;
@@ -55,6 +54,10 @@ const Description = styled.p`
   margin: auto;
   font-size: 18px;
   padding-bottom: 16px;
+`;
+
+const Contact = styled.button`
+  
 `;
 
 export default class ProjectView extends React.Component {

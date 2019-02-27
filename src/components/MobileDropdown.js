@@ -120,7 +120,7 @@ class MobileDropdown extends React.Component {
             </MenuItem>
             <MenuItem>
               <Link to='/projetos/comercial'>
-              comercial
+                comercial
               </Link>
             </MenuItem>
             <MenuItem>
@@ -131,7 +131,6 @@ class MobileDropdown extends React.Component {
           </Expandable>
           <MenuItem>Escritório</MenuItem>
           <MenuItem>Mídia</MenuItem>
-          <MenuItem>Contato</MenuItem>
         </Content>
       </Wrapper>
     );

@@ -86,12 +86,25 @@ const Title = styled.p`
 class Main extends React.Component {
   componentDidMount() {
     if (!this.props.projects) {
-      this.props.getProjects();
+      this.getProjects();
+    }
+  }
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.match.url !== this.props.match.url) {
+      this.getProjects();
+    }
+  }
+  getProjects () {
+    if (this.props.match.params.type) {
+      this.props.getProjects({type: this.props.match.params.type});
+    } else {
+      this.props.getProjects({firstPage: true});
     }
   }
   render() {
+    console.log(this.props);
     if (this.props.loading)     {
-      return <div style={{}}>loading...</div>;
+      return <div>loading...</div>;
     }
     return this.props.items.map((project, i) => {
       const mainImage = project.photos.reduce((prev, curr) => {

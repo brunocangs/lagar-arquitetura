@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '.';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) => (
@@ -77,8 +76,8 @@ const Title = styled.p`
   text-align: center;
 `;
 
-const Footer = (props) => (
-  <Wrapper>
+const Footer = React.forwardRef((props, ref) => (
+  <Wrapper ref={ref}>
     <Title>Sobre nós</Title>
     <MyMapComponent
       containerElement={<MapWrapper />}
@@ -88,9 +87,9 @@ const Footer = (props) => (
       mapElement={<div style={{ height: '100%' }} />}
     />
     <Row>
-      <ExternalLink href={'https://instagram.com/arrobaAqui'}>
+      <ExternalLink href={'https://instagram.com/lagar.arq'}>
         <SocialItem>
-          <i className='icon icon-instagram icon-bg-circle icon-bg-black'></i><HelpCenter>@arrobaDoInsta</HelpCenter>
+          <i className='icon icon-instagram icon-bg-circle icon-bg-black'></i><HelpCenter>@lagar.arq</HelpCenter>
         </SocialItem>
       </ExternalLink>
       <ExternalLink href={'https://facebook.com/facebookAqui'}>
@@ -100,24 +99,24 @@ const Footer = (props) => (
       </ExternalLink>
     </Row>
     <Row>
-      <ExternalLink href={'tel://+5532984535294'}>
+      <ExternalLink href={'tel://+5532984417138'}>
         <SocialItem>
-          <i className='icon icon-phone icon-bg-circle icon-bg-black'></i><HelpCenter phone>(32)3232-3232</HelpCenter>
+          <i className='icon icon-phone icon-bg-circle icon-bg-black'></i><HelpCenter phone>(32) 98441-7138</HelpCenter>
         </SocialItem>
       </ExternalLink>
-      <ExternalLink href={'tel://+5532984535294'}>
+      <ExternalLink href={'tel://+5532984417138'}>
         <SocialItem>
-          <i className='icon icon-phone icon-bg-circle icon-bg-black'></i><HelpCenter phone>(32)3232-3232</HelpCenter>
+          <i className='icon icon-phone icon-bg-circle icon-bg-black'></i><HelpCenter phone>(32) 98441-7138</HelpCenter>
         </SocialItem>
       </ExternalLink>
-      <ExternalLink href={'tel://+5532984535294'}>
+      <ExternalLink href={'tel://+5532984417138'}>
         <SocialItem>
-          <i className='icon icon-phone icon-bg-circle icon-bg-black'></i><HelpCenter phone>(32)3232-3232</HelpCenter>
+          <i className='icon icon-phone icon-bg-circle icon-bg-black'></i><HelpCenter phone>(32) 98441-7138</HelpCenter>
         </SocialItem>
       </ExternalLink>
     </Row>
     
   </Wrapper>
-);
+));
 
 export default Footer;

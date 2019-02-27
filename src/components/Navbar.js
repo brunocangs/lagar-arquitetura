@@ -128,6 +128,35 @@ const DropdownItem = styled.div`
   }
 `;
 
+const FAB = styled.div`
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.2);
+  border-radius: 100%;
+  padding: 14px;
+  background-color: ${props => props.theme.secondary};
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+  align-items: center;
+  img {
+    background-position: center center;
+    background-size: contain;
+    height: 32px;
+    width: 32px;
+    filter: invert(1);
+  }
+  @media screen and (max-width: 768px){
+    padding: 12px;
+    img {
+      height: 28px;
+      width: 28px;
+    }
+  }
+`;
+
 class Navbar extends React.Component {
   state = {
     open: false
@@ -136,16 +165,31 @@ class Navbar extends React.Component {
     this.props.getProjects();
   }
   toggleMenu = () => {
-    this.setState(state => ({
-      open: !state.open
-    }));
+    this.setState(state => (
+      {
+        open: !state.open
+      }
+    ));
+  }
+  scrollToInfo = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(this.props.footer);
+    window.scrollTo(0, this.props.footer.current.offsetTop - 90 || 9999);
   }
   render() {
     return (
       <>
+        <FAB onClick={this.scrollToInfo}>
+          <img alt='Ícone de conversa'
+            src={require('../assets/images/comment-solid.svg')}
+          />
+        </FAB>
         <Nav {...this.props}>
           <Link to='/'>
-            <Logo src={require('../assets/images/lagar_logo_horizontal.svg')} />
+            <Logo alt='Logo da empresa Lagar Design e Arquitetura'
+              src={require('../assets/images/lagar_logo_horizontal.svg')}
+            />
           </Link>
           <Menu>
             <MenuItem exact
@@ -184,20 +228,13 @@ class Navbar extends React.Component {
                 mídia
               </Link>
             </MenuItem>
-            <MenuItem exact
-              path='/contato'
-            >
-              <Link to='/contato'>
-                contato
-              </Link>
-            </MenuItem>
           </Menu>
-          <Hamburger 
+          <Hamburger
             onClick={this.toggleMenu}
             size={32}
           />
         </Nav>
-        <MobileDropdown 
+        <MobileDropdown
           onClose={this.toggleMenu}
           open={this.state.open}
         />
