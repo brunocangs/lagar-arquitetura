@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999999;
+  z-index: 5;
   background-color: #FAFAFA;
   transform: ${props => {
     if (props.open) {

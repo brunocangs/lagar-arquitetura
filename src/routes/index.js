@@ -4,6 +4,7 @@ import {Navbar, NotFound, Footer} from '../components';
 import Main from '../views/main';
 import Project from '../views/project';
 import SwitchBoundary from '../components/SwitchBoundary';
+import OfficeView from '../views/office';
 
 class Routes extends React.Component {
   state = {
@@ -27,14 +28,18 @@ class Routes extends React.Component {
             path='/'
           />
           <Route 
-            component={Main}
             exact
             path='/projetos/:type?'
+            render={(props) => <Main {...props} />}
           />
           <Route 
             component={Project}
             exact
             path={'/projeto/:id'}
+          />
+          <Route 
+            component={OfficeView}
+            path='/escritorio'
           />
           <Route
             component={NotFound}

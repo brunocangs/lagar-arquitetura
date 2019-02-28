@@ -4,4 +4,5 @@ export {default as Link} from './Link';
 export {default as NotFound} from './NotFound';
 export {default as Footer} from './Footer';
 export {default as MobileDropdown} from './MobileDropdown';
+export {default as ProjectNavigator} from './ProjectNavigator';
 

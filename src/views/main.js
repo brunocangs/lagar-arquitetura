@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {getProjects} from '../actions';
 import {
   Link,
-  LagarLogo
+  LagarLogo,
+  ProjectNavigator
 } from '../components';
 
 const fadeIn = keyframes`
@@ -89,7 +90,7 @@ class Main extends React.Component {
       this.getProjects();
     }
   }
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate (prevProps) {
     if (prevProps.match.url !== this.props.match.url) {
       this.getProjects();
     }
@@ -104,9 +105,14 @@ class Main extends React.Component {
   render() {
     console.log(this.props);
     if (this.props.loading)     {
-      return <div>loading...</div>;
+      return (
+        <>
+          {'type' in this.props.match.params && <ProjectNavigator />}
+          <div style={{height: 'calc(100vh - 90px)'}}>loading...</div>;
+        </>
+      );
     }
-    return this.props.items.map((project, i) => {
+    const Banners = this.props.items.map((project, i) => {
       const mainImage = project.photos.reduce((prev, curr) => {
         if (curr.order < prev.order) return curr;
         return prev;
@@ -139,6 +145,12 @@ class Main extends React.Component {
         </Banner>
       );
     });
+    return (
+      <>
+        {'type' in this.props.match.params && <ProjectNavigator />}
+        {Banners}
+      </>
+    );
   }
 }
 

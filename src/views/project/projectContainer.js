@@ -10,17 +10,29 @@ class ProjectContainer extends React.Component {
     }
   }
   render() { 
-    return <ProjectView project={this.props.project} />;
+    return (
+      <ProjectView 
+        nextProject={this.props.nextProject}
+        project={this.props.project}
+      />
+    );
   }
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const project = stateProps.item || (ownProps.location.state.project);
+  const project = ownProps.location.state.project || stateProps.item;
+  let nextProject;
+  if (stateProps.items) {
+    const projectIndex = stateProps.items.findIndex(item => item.id === project.id);
+    nextProject = stateProps.items[(projectIndex + 1) % stateProps.items.length];
+  }
+  console.log(nextProject);
   return {
     ...stateProps,
     ...dispatchProps,
     ...ownProps,
-    project
+    project,
+    nextProject
   };
 };
 

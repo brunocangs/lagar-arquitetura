@@ -61,6 +61,8 @@ const NotFound = () => (
   <Wrapper>
     Ocorreu um erro inesperado
     <br />
+    Caso o erro persista, entre em contato conosco
+    <br />
     <br />
     Clique <LinkToMain onClick={() => {
       window.location.reload();

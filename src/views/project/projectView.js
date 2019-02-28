@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Swipeable from 'react-swipeable-views';
+import { Link } from '../../components';
 
 const Photo = styled.div`
     width: 100%;
@@ -23,7 +24,7 @@ const MarkerWrapper = styled.div`
   right: 0;
   display: flex;
   justify-content: center;
-  z-index: 9;
+  z-index: 3;
   padding-top: 12px;
 `;
 
@@ -56,8 +57,35 @@ const Description = styled.p`
   padding-bottom: 16px;
 `;
 
-const Contact = styled.button`
-  
+const Contact = styled.div`
+    padding: 32px 12px;
+    border: 1px solid #666;
+    max-width: 40%;
+    background-color: transparent;
+    color: #666;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    margin: 8px auto;
+    :active {
+      background-color: rgba(50,50,50,0.1);
+    }
+    @media screen and (max-width: 768px){
+      max-width: 85%;
+    }
+`;
+
+const NextProject = styled.div`
+
+`;
+
+const NextTitle = styled.p`
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 6px;
+  padding-top: 14px;
 `;
 
 export default class ProjectView extends React.Component {
@@ -67,9 +95,13 @@ export default class ProjectView extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.project.id !== this.props.project.id) {
+      window.scrollTo(0, 0);
+    }
+  }
   render () {
     const {project} = this.props;
-    console.log(project);
     if (!project || !project.photos) return null;
     return (
       <>
@@ -104,7 +136,24 @@ export default class ProjectView extends React.Component {
             <Title>{project.name}</Title>
             <Description>{project.description}</Description>
           </Content>
+          <Contact tabIndex={0}>
+            Entrar em contato
+          </Contact>
         </PhotoWrapper>
+        {this.props.nextProject && <NextProject>
+          <NextTitle>
+              Próximo projeto
+          </NextTitle>
+          <Link to={{
+            pathname: `/projeto/${this.props.nextProject.id}`,
+            state: {
+              project: this.props.nextProject
+            }
+          }}
+          >
+            <Photo url={this.props.nextProject.photos[0].url} />
+          </Link>
+        </NextProject>}
       </>
     );
   }

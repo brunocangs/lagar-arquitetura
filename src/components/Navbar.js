@@ -16,7 +16,8 @@ const Nav = styled.nav`
     position: sticky;
     top: 0;
     background-color: ${props => props.theme.gray};
-    z-index: 99;
+    box-shadow: 0px -1px 4px 2px rgba(0,0,0,0.2);
+    z-index: 5;
     @media screen and (max-width: 768px) {
       padding: 20px 16px
     }
@@ -132,13 +133,13 @@ const FAB = styled.div`
   position: fixed;
   bottom: 16px;
   right: 16px;
-  box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.2);
   border-radius: 100%;
   padding: 14px;
   background-color: ${props => props.theme.secondary};
   display: flex;
   justify-content: center;
-  z-index: 999;
+  z-index: 4;
   cursor: pointer;
   align-items: center;
   img {
@@ -163,6 +164,9 @@ class Navbar extends React.Component {
   }
   componentDidMount() {
     this.props.getProjects();
+  }
+  componentWillUnmount() {
+    
   }
   toggleMenu = () => {
     this.setState(state => (
