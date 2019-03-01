@@ -5,6 +5,7 @@ import Main from '../views/main';
 import Project from '../views/project';
 import SwitchBoundary from '../components/SwitchBoundary';
 import OfficeView from '../views/office';
+import Media from '../views/media';
 
 class Routes extends React.Component {
   state = {
@@ -40,6 +41,10 @@ class Routes extends React.Component {
           <Route 
             component={OfficeView}
             path='/escritorio'
+          />
+          <Route
+            component={Media}
+            path='/midia'
           />
           <Route
             component={NotFound}

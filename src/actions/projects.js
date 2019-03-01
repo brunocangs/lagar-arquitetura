@@ -20,7 +20,6 @@ export const getProjects = (filter) => (dispatch) => {
   } else {
     query = projects.get();
   }
-  console.log(query);
   query.then((value) => {
     const values = value.docs.map(item => {
       return {

@@ -94,11 +94,11 @@ const Footer = React.forwardRef((props, ref) => (
           <i className='icon icon-instagram icon-bg-circle icon-bg-black'></i><HelpCenter>@lagar.arq</HelpCenter>
         </SocialItem>
       </ExternalLink>
-      <ExternalLink href={'https://facebook.com/facebookAqui'}
+      <ExternalLink href={'https://facebook.com/lagar.arq'}
         target='_blank'
       >
         <SocialItem noMargin>
-          <i className='icon icon-facebook icon-bg-circle icon-bg-black'></i><HelpCenter>/Facebook Aqui</HelpCenter>
+          <i className='icon icon-facebook icon-bg-circle icon-bg-black'></i><HelpCenter>/lagar.arq</HelpCenter>
         </SocialItem>
       </ExternalLink>
     </Row>

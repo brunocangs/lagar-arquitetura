@@ -47,6 +47,7 @@ const Title = styled.h1`
   text-align: center;
   padding-top: 18px;
   font-weight: normal;
+  margin: 0 8px 30px;
 `;
 
 const Description = styled.p`

@@ -93,6 +93,7 @@ class Main extends React.Component {
   componentDidUpdate (prevProps) {
     if (prevProps.match.url !== this.props.match.url) {
       this.getProjects();
+      window.scrollTo(0,0);
     }
   }
   getProjects () {
@@ -103,7 +104,6 @@ class Main extends React.Component {
     }
   }
   render() {
-    console.log(this.props);
     if (this.props.loading)     {
       return (
         <>
@@ -136,7 +136,7 @@ class Main extends React.Component {
                   classNameBottom={'fadeInSlideLeft'}
                   classNameTop={'fadeInSlideRight'}
                   size={80}
-                  style={{height: '100%', zIndex: 22, overflow: 'visible'}}
+                  style={{height: '100%', zIndex: 2, overflow: 'visible'}}
                 />
                 <Title>{project.name}</Title>
               </Container>

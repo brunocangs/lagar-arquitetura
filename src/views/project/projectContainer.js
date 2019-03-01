@@ -26,7 +26,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const projectIndex = stateProps.items.findIndex(item => item.id === project.id);
     nextProject = stateProps.items[(projectIndex + 1) % stateProps.items.length];
   }
-  console.log(nextProject);
   return {
     ...stateProps,
     ...dispatchProps,

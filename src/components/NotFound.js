@@ -6,7 +6,8 @@ const Wrapper = styled.div`
     padding-top: 108px;
     text-align: center;
     font-size: 24px;
-    font-color: #ccc;
+    width: 90%;
+    margin: auto;
     flex: 1;
     min-height: calc(100vh - 90px);
 `;

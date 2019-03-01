@@ -166,7 +166,7 @@ class Navbar extends React.Component {
     this.props.getProjects();
   }
   componentWillUnmount() {
-    
+
   }
   toggleMenu = () => {
     this.setState(state => (
@@ -178,7 +178,6 @@ class Navbar extends React.Component {
   scrollToInfo = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(this.props.footer);
     window.scrollTo(0, this.props.footer.current.offsetTop - 90 || 9999);
   }
   render() {
