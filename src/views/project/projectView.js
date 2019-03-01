@@ -10,6 +10,7 @@ const Photo = styled.div`
     background-image: url(${props => props.url});
     background-position: center center;
     background-size: cover;
+    position: relative;
 `;
 
 const PhotoWrapper = styled.div`
@@ -77,9 +78,7 @@ const Contact = styled.div`
     }
 `;
 
-const NextProject = styled.div`
-
-`;
+const NextProject = styled.div``;
 
 const NextTitle = styled.p`
   font-size: 16px;
@@ -87,6 +86,26 @@ const NextTitle = styled.p`
   text-align: center;
   margin-bottom: 6px;
   padding-top: 14px;
+`;
+
+const CoverTitle = styled.div`
+  font-weight: normal;
+  font-size: 32px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 768px){
+    font-size: 26px;
+  }
 `;
 
 export default class ProjectView extends React.Component {
@@ -101,17 +120,17 @@ export default class ProjectView extends React.Component {
       window.scrollTo(0, 0);
     }
   }
-  render () {
-    const {project} = this.props;
+  render() {
+    const { project } = this.props;
     if (!project || !project.photos) return null;
     return (
       <>
         <PhotoWrapper>
           <MarkerWrapper>
             {
-              project.photos.sort((a,b) => a.order - b.order).map((photo, i) => {
+              project.photos.sort((a, b) => a.order - b.order).map((photo, i) => {
                 return (
-                  <Marker 
+                  <Marker
                     current={this.state.index}
                     key={i}
                     self={i}
@@ -120,10 +139,10 @@ export default class ProjectView extends React.Component {
               })
             }
           </MarkerWrapper>
-          <Swipeable 
+          <Swipeable
             enableMouseEvents
             index={this.state.index}
-            onChangeIndex={(index) => this.setState({index})}
+            onChangeIndex={(index) => this.setState({ index })}
           >
             {project.photos.map((photo, i) => {
               return (
@@ -143,7 +162,7 @@ export default class ProjectView extends React.Component {
         </PhotoWrapper>
         {this.props.nextProject && <NextProject>
           <NextTitle>
-              Próximo projeto
+            Próximo projeto
           </NextTitle>
           <Link to={{
             pathname: `/projeto/${this.props.nextProject.id}`,
@@ -152,7 +171,9 @@ export default class ProjectView extends React.Component {
             }
           }}
           >
-            <Photo url={this.props.nextProject.photos[0].url} />
+            <Photo url={this.props.nextProject.photos[0].url}>
+              <CoverTitle>{this.props.nextProject.name}</CoverTitle>
+            </Photo>
           </Link>
         </NextProject>}
       </>
