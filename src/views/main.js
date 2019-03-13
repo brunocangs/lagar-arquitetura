@@ -33,7 +33,25 @@ const Banner = styled.div`
     height: calc(100vw * 9 / 16);
   }
 `;
-
+const Title = styled.p`
+  position: absolute;
+  top:0;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  color: ${props => props.theme.white};
+  font-size: 32px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  text-align: center;
+  transform-origin: center;
+  @media screen and (max-width: 768px){
+    font-size: 28px;
+  }
+`;
 const TitleWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -51,6 +69,9 @@ const TitleWrapper = styled.div`
   }
   &:hover {
     opacity: 1;
+    ${Title} {
+      animation: ${fadeIn} 0.4s 1.1s ease-in both;
+    }
     * {
       animation-play-state: running;
     }
@@ -62,26 +83,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-const Title = styled.p`
-  position: absolute;
-  top:0;
-  left: 10%;
-  right: 10%;
-  bottom: 0;
-  color: ${props => props.theme.white};
-  font-size: 32px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  text-align: center;
-  animation: ${fadeIn} 0.4s 1.1s ease-in paused both;
-  transform-origin: center;
-  @media screen and (max-width: 768px){
-    font-size: 28px;
-  }
 `;
 
 class Main extends React.Component {
