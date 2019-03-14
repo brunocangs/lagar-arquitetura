@@ -4,7 +4,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-map
 
 const MyMapComponent = withScriptjs(withGoogleMap((props) => (
   <GoogleMap
-    defaultCenter={{ lat: -21.770575, lng: -43.347537 }}
+    defaultCenter={{ lat: -21.780752, lng: -43.361674 }}
     defaultZoom={15}
     options={
       {
@@ -12,7 +12,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => (
       }
     }
   >
-    {props.isMarkerShown && <Marker position={{ lat: -21.770575, lng: -43.347546 }} />}
+    {props.isMarkerShown && <Marker position={{ lat: -21.780752, lng: -43.361674 }} />}
   </GoogleMap>
 )));
 
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
 `;
 
 const SocialItem = styled.div`
-    font-size: 20px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     margin-right: ${props => props.noMargin ? 0 : 18}px;
@@ -43,7 +43,7 @@ const Row = styled.div`
   flex: 1;
   @media (max-width: 768px){
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 `;
 

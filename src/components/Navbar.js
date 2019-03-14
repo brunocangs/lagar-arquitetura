@@ -178,7 +178,7 @@ class Navbar extends React.Component {
   scrollToInfo = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    window.scrollTo(0, this.props.footer.current.offsetTop - 90 || 9999);
+    window.scrollTo(0, document.body.scrollHeight);
   }
   render() {
     return (
@@ -198,7 +198,9 @@ class Navbar extends React.Component {
             <MenuItem exact
               path='/projetos/:type?'
             >
+              <Link to='/projetos'>
               projetos
+              </Link>
               <Dropdown>
                 <Link to='/projetos'>
                   <DropdownItem>
