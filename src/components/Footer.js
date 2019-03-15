@@ -17,22 +17,25 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) => (
 )));
 
 const Wrapper = styled.div`
-    background-color: ${props => props.theme.gray};
-    padding: 0 30px;
+  background-color: ${props => props.theme.gray};
+  padding: 0 30px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 768px){
+    padding: 0 12px;
     padding-bottom: 60px;
-    display: flex;
-    flex-direction: column;
-    @media (max-width: 768px){
-      padding: 0 12px;
-      padding-bottom: 60px;
-    }
+  }
 `;
 
 const SocialItem = styled.div`
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    margin-right: ${props => props.noMargin ? 0 : 18}px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  margin-right: ${props => props.noMargin ? 0 : 18}px;
+  @media (max-width: 768px){
+    margin-right: 0;
+  }
 `;
 
 const Row = styled.div`
@@ -121,7 +124,7 @@ const Footer = React.forwardRef((props, ref) => (
         </SocialItem>
       </ExternalLink>
     </Row>
-    
+
   </Wrapper>
 ));
 

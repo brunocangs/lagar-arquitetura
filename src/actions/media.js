@@ -21,7 +21,6 @@ export const getMedia = (filter) => (dispatch) => {
     query = media.get();
   }
   query.then((value) => {
-    console.log(value);
     const values = value.docs.map(item => {
       return {
         ...item.data(),

@@ -33,6 +33,6 @@ export default (state = DEFAULT_STATE, {type, payload}) => {
       item: {...payload}
     };
   default:
-    return DEFAULT_STATE;
+    return {...state};
   }
 };

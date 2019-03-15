@@ -7,6 +7,7 @@ import SwitchBoundary from '../components/SwitchBoundary';
 import OfficeView from '../views/office';
 import Media from '../views/media';
 import RequireAuth from './requireAuth';
+import { Dashboard } from '../views/management';
 
 class Routes extends React.Component {
   state = {
@@ -49,9 +50,9 @@ class Routes extends React.Component {
             path='/midia'
           />
           <RequireAuth
+            component={Dashboard}
             exact
             path='/gerencia'
-            render={() => <div>Hi</div>}
           />
           <Route
             component={NotFound}

@@ -6,4 +6,5 @@ export {default as Footer} from './Footer';
 export {default as MobileDropdown} from './MobileDropdown';
 export {default as ProjectNavigator} from './ProjectNavigator';
 export {default as Input} from './Input';
+export {default as Button} from './Button';
 
