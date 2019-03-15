@@ -59,7 +59,8 @@ const MediaView = (props) => {
       <Col>
         {left.map((item, i) => {
           return (
-            <FullMediaItem item={item}
+            <FullMediaItem
+              item={item}
               key={i}
             />
           );
@@ -69,7 +70,8 @@ const MediaView = (props) => {
         {right.concat(right.length !== left.length ? {} : []).map((item, i) => {
           if (!item.images) return <MediaItem />;
           return (
-            <FullMediaItem item={item}
+            <FullMediaItem
+              item={item}
               key={i}
             />
           );

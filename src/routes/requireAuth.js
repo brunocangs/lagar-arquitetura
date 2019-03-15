@@ -4,7 +4,6 @@ import {Route} from 'react-router-dom';
 import Auth from '../views/auth';
 
 const RequireAuth = (props) => {
-  console.log(firebase, firebase.auth);
   const user = firebase.auth().currentUser;
   if (!user) return <Auth />;
   else return <Route {...props} />;

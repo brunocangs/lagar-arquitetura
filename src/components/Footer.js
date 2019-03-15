@@ -87,14 +87,16 @@ const Footer = React.forwardRef((props, ref) => (
       mapElement={<div style={{ height: '100%' }} />}
     />
     <Row>
-      <ExternalLink href={'https://instagram.com/lagar.arq'}
+      <ExternalLink
+        href={'https://instagram.com/lagar.arq'}
         target='_blank'
       >
         <SocialItem>
           <i className='icon icon-instagram icon-bg-circle icon-bg-black'></i><HelpCenter>@lagar.arq</HelpCenter>
         </SocialItem>
       </ExternalLink>
-      <ExternalLink href={'https://facebook.com/lagar.arq'}
+      <ExternalLink
+        href={'https://facebook.com/lagar.arq'}
         target='_blank'
       >
         <SocialItem noMargin>

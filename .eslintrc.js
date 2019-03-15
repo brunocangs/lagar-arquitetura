@@ -52,6 +52,7 @@ module.exports = {
         "react/jsx-wrap-multilines": [2, {return: "parens-new-line", declaration: "parens-new-line", arrow: "parens-new-line"}],
         "react/jsx-uses-vars": [1],
         "react/jsx-uses-react": [1],
+        "react/jsx-first-prop-new-line": [2],
         "no-console": 0
     }
 };

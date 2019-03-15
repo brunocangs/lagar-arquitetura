@@ -63,21 +63,24 @@ const MenuItem = withRouter(MenuItemHelper);
 const ProjectNavigator = (props) => {
   return (
     <Wrapper>
-      <MenuItem exact
+      <MenuItem
+        exact
         path='/projetos'
       >
         <Link to='/projetos'>
           Todos
         </Link>
       </MenuItem>
-      <MenuItem exact
+      <MenuItem
+        exact
         path='/projetos/comercial'
       >
         <Link to='/projetos/comercial'>
           Comercial
         </Link>
       </MenuItem>
-      <MenuItem exact
+      <MenuItem
+        exact
         path='/projetos/residencial'
       >
         <Link to='/projetos/residencial'>

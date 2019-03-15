@@ -17,7 +17,8 @@ class Routes extends React.Component {
       <>
         <Route 
           component={(props) => (
-            <Navbar {...props}
+            <Navbar
+              {...props}
               footer={this.state.footer}
             />
           )}

@@ -184,18 +184,21 @@ class Navbar extends React.Component {
     return (
       <>
         <FAB onClick={this.scrollToInfo}>
-          <img alt='Ícone de conversa'
+          <img
+            alt='Ícone de conversa'
             src={require('../assets/images/comment-solid.svg')}
           />
         </FAB>
         <Nav {...this.props}>
           <Link to='/'>
-            <Logo alt='Logo da empresa Lagar Design e Arquitetura'
+            <Logo
+              alt='Logo da empresa Lagar Design e Arquitetura'
               src={require('../assets/images/lagar_logo_horizontal.svg')}
             />
           </Link>
           <Menu>
-            <MenuItem exact
+            <MenuItem
+              exact
               path='/projetos/:type?'
             >
               <Link to='/projetos'>
@@ -219,14 +222,16 @@ class Navbar extends React.Component {
                 </Link>
               </Dropdown>
             </MenuItem>
-            <MenuItem exact
+            <MenuItem
+              exact
               path='/escritorio'
             >
               <Link to='/escritorio'>
                 escritório
               </Link>
             </MenuItem>
-            <MenuItem exact
+            <MenuItem
+              exact
               path='/midia'
             >
               <Link to='/midia'>

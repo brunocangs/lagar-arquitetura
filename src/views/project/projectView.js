@@ -146,7 +146,8 @@ export default class ProjectView extends React.Component {
           >
             {project.photos.map((photo, i) => {
               return (
-                <Photo key={i}
+                <Photo
+                  key={i}
                   url={photo.url}
                 />
               );
