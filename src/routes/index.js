@@ -6,6 +6,7 @@ import Project from '../views/project';
 import SwitchBoundary from '../components/SwitchBoundary';
 import OfficeView from '../views/office';
 import Media from '../views/media';
+import RequireAuth from './requireAuth';
 
 class Routes extends React.Component {
   state = {
@@ -45,6 +46,11 @@ class Routes extends React.Component {
           <Route
             component={Media}
             path='/midia'
+          />
+          <RequireAuth
+            exact
+            path='/gerencia'
+            render={() => <div>Hi</div>}
           />
           <Route
             component={NotFound}

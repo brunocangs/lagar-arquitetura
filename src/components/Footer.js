@@ -81,7 +81,7 @@ const Footer = React.forwardRef((props, ref) => (
     <Title>Sobre nós</Title>
     <MyMapComponent
       containerElement={<MapWrapper />}
-      googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCCTyH5A-_enwhl6vrTFbZk_xhocCyPmp4"
+      googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDN1b5PfPhFgStwLvIR71Y9w6IUM52EIhc"
       isMarkerShown
       loadingElement={<div style={{ height: '100%' }} />}
       mapElement={<div style={{ height: '100%' }} />}

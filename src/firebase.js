@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
+import 'firebase/auth';
 // Move to dotenv
 const app = firebase.initializeApp({
   apiKey: 'AIzaSyDX1d9lgwfNcv0-ZX3ZaBrVEDIM_iT-z4o',
