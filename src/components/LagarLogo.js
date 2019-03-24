@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default (props) => {
+export default props => {
   return (
-    <svg 
+    <svg
       className={props.className}
       height={props.size}
       style={props.style}

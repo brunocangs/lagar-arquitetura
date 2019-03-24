@@ -1,12 +1,8 @@
 import React from 'react';
-import styled, {keyframes} from 'styled-components';
-import {connect} from 'react-redux';
-import {getProjects} from '../actions';
-import {
-  Link,
-  LagarLogo,
-  ProjectNavigator
-} from '../components';
+import styled, { keyframes } from 'styled-components';
+import { connect } from 'react-redux';
+import { getProjects } from '../actions';
+import { Link, LagarLogo, ProjectNavigator } from '../components';
 
 const fadeIn = keyframes`
   from {
@@ -35,7 +31,7 @@ const Banner = styled.div`
 `;
 const Title = styled.p`
   position: absolute;
-  top:0;
+  top: 0;
   left: 10%;
   right: 10%;
   bottom: 0;
@@ -48,7 +44,7 @@ const Title = styled.p`
   text-transform: uppercase;
   text-align: center;
   transform-origin: center;
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px) {
     font-size: 28px;
   }
 `;
@@ -58,7 +54,7 @@ const TitleWrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   opacity: 0;
   display: flex;
   align-items: center;
@@ -91,53 +87,57 @@ class Main extends React.Component {
       this.getProjects();
     }
   }
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.match.url !== this.props.match.url) {
       this.getProjects();
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
   }
-  getProjects () {
+  getProjects() {
     if (this.props.match.params.type) {
-      this.props.getProjects({type: this.props.match.params.type});
+      this.props.getProjects({ type: this.props.match.params.type });
     } else {
-      this.props.getProjects({firstPage: true});
+      this.props.getProjects({ firstPage: true });
     }
   }
   render() {
-    if (this.props.loading)     {
+    if (this.props.loading) {
       return (
         <>
           {'type' in this.props.match.params && <ProjectNavigator />}
-          <div style={{height: 'calc(100vh - 90px)'}}>loading...</div>;
+          <div style={{ height: 'calc(100vh - 90px)' }}>loading...</div>;
         </>
       );
     }
     const Banners = this.props.items.map((project, i) => {
-      const mainImage = project.photos.reduce((prev, curr) => {
-        if (curr.order < prev.order) return curr;
-        return prev;
-      }, {
-        url: '',
-        order: Infinity
-      }).url;
+      const mainImage = project.photos.reduce(
+        (prev, curr) => {
+          if (curr.order < prev.order) return curr;
+          return prev;
+        },
+        {
+          url: '',
+          order: Infinity
+        }
+      ).url;
       return (
-        <Banner 
+        <Banner
           key={i}
           url={mainImage}
         >
-          <Link to={{
-            pathname: `/projeto/${project.id}`,
-            state: {project}
-          }}
+          <Link
+            to={{
+              pathname: `/projeto/${project.id}`,
+              state: { project }
+            }}
           >
             <TitleWrapper>
               <Container>
-                <LagarLogo 
+                <LagarLogo
                   classNameBottom={'fadeInSlideLeft'}
                   classNameTop={'fadeInSlideRight'}
                   size={80}
-                  style={{height: '100%', zIndex: 2, overflow: 'visible'}}
+                  style={{ height: '100%', zIndex: 2, overflow: 'visible' }}
                 />
                 <Title>{project.name}</Title>
               </Container>
@@ -159,6 +159,9 @@ const mapDispatchToProps = {
   getProjects
 };
 
-const mapStateToProps = ({projectsReducer}) => ({...projectsReducer});
+const mapStateToProps = ({ projectsReducer }) => ({ ...projectsReducer });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

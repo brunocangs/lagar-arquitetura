@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   z-index: 5;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   transform: ${props => {
     if (props.open) {
       return 'translateY(0)';
@@ -44,7 +44,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   & > ${MenuItem}::before {
-    content: ' ';
+    content: " ";
     bottom: 0;
     left: 50%;
     position: absolute;
@@ -70,10 +70,11 @@ const Close = styled.i`
 
 const Expandable = styled.div`
   overflow: hidden;
-  max-height: ${props => props.expanded ? '150px' : '0'};
-  padding: ${props => props.expanded ? '8px 0' : '0'};
+  max-height: ${props => (props.expanded ? '150px' : '0')};
+  padding: ${props => (props.expanded ? '8px 0' : '0')};
   transition: all 0.25s ease-in-out;
-  box-shadow: 0 6px 4px -5px rgba(0,0,0,0.3) inset, 0 -6px 4px -5px rgba(0,0,0,0.3) inset;
+  box-shadow: 0 6px 4px -5px rgba(0, 0, 0, 0.3) inset,
+    0 -6px 4px -5px rgba(0, 0, 0, 0.3) inset;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -88,56 +89,44 @@ const CenterText = styled.div`
 class MobileDropdown extends React.Component {
   state = {
     expanded: false
-  }
+  };
   toggleExpanded = () => {
     this.setState(state => ({
       expanded: !state.expanded
     }));
-  }
+  };
   render() {
     return (
-      <Wrapper
-        open={this.props.open}
-      >
+      <Wrapper open={this.props.open}>
         <Content>
-          <Close 
-            className='icon icon-close'
-            onClick={(e) => {
+          <Close
+            className="icon icon-close"
+            onClick={e => {
               e.stopPropagation();
               e.preventDefault();
               this.props.onClose();
             }}
-            style={{fontSize: '1.8em'}}
+            style={{ fontSize: '1.8em' }}
           />
           <MenuItem>
             <CenterText onClick={this.toggleExpanded}>Projetos</CenterText>
           </MenuItem>
           <Expandable expanded={this.state.expanded}>
             <MenuItem>
-              <Link to='/projetos'>
-                Todos
-              </Link>
+              <Link to="/projetos">Todos</Link>
             </MenuItem>
             <MenuItem>
-              <Link to='/projetos/comercial'>
-                comercial
-              </Link>
+              <Link to="/projetos/comercial">comercial</Link>
             </MenuItem>
             <MenuItem>
-              <Link to='/projetos/residencial'>
-                Residencial
-              </Link>
+              <Link to="/projetos/residencial">Residencial</Link>
             </MenuItem>
           </Expandable>
           <MenuItem>
-            <Link to='/escritorio'>
-            Escritório
-            </Link>
+            <Link to="/escritorio">Escritório</Link>
           </MenuItem>
           <MenuItem>
-            <Link to='/midia'>
-            Mídia
-            </Link>
+            <Link to="/midia">Mídia</Link>
           </MenuItem>
         </Content>
       </Wrapper>

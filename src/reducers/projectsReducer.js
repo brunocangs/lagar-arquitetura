@@ -1,4 +1,4 @@
-import {types} from '../actions';
+import { types } from '../actions';
 
 const {
   CREATE_PROJECTS,
@@ -15,7 +15,7 @@ const DEFAULT_STATE = {
   loading: false
 };
 
-export default (state = DEFAULT_STATE, {type, payload}) => {
+export default (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
   case GET_PROJECTS:
     return {
@@ -27,12 +27,12 @@ export default (state = DEFAULT_STATE, {type, payload}) => {
       ...state,
       loading: payload
     };
-  case GET_SINGLE_PROJECT: 
+  case GET_SINGLE_PROJECT:
     return {
       ...state,
-      item: {...payload}
+      item: { ...payload }
     };
   default:
-    return {...state};
+    return { ...state };
   }
 };

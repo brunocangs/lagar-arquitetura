@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch} from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
 class SwitchBoundary extends React.Component {
@@ -7,13 +7,13 @@ class SwitchBoundary extends React.Component {
     super(props);
     this.state = { hasError: false };
   }
-    
-  static getDerivedStateFromError(error) {
+
+  static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
-    
-  componentDidCatch(error, info) {
+
+  componentDidCatch(error) {
     // Example "componentStack":
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
@@ -22,7 +22,7 @@ class SwitchBoundary extends React.Component {
     console.log(error);
     // logComponentStackToMyService(info.componentStack);
   }
-  reload () {
+  reload() {
     window.location.reload();
   }
   render() {
@@ -30,32 +30,27 @@ class SwitchBoundary extends React.Component {
       // You can render any custom fallback UI
       return <NotFound />;
     }
-    
-    return (
-      <Switch>
-        {this.props.children}
-      </Switch>
-    ); 
+
+    return <Switch>{this.props.children}</Switch>;
   }
 }
 
-
 const Wrapper = styled.div`
-    padding-top: 108px;
-    text-align: center;
-    font-size: 24px;
-    flex: 1;
-    width: 90%;
-    margin: auto;
-    min-height: calc(100vh - 90px);
+  padding-top: 108px;
+  text-align: center;
+  font-size: 24px;
+  flex: 1;
+  width: 90%;
+  margin: auto;
+  min-height: calc(100vh - 90px);
 `;
 
 const LinkToMain = styled.span`
-    color: ${props => props.theme.secondary};
-    cursor: pointer;
-    &:hover {
-        text-decoration: underline;
-    }
+  color: ${props => props.theme.secondary};
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const NotFound = () => (
@@ -65,10 +60,15 @@ const NotFound = () => (
     Caso o erro persista, entre em contato conosco
     <br />
     <br />
-    Clique <LinkToMain onClick={() => {
-      window.location.reload();
-    }}
-    >aqui</LinkToMain> para recarregar a página
+    Clique{' '}
+    <LinkToMain
+      onClick={() => {
+        window.location.reload();
+      }}
+    >
+      aqui
+    </LinkToMain>{' '}
+    para recarregar a página
   </Wrapper>
 );
 export default SwitchBoundary;

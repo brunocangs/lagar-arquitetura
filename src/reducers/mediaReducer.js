@@ -1,4 +1,4 @@
-import {types} from '../actions';
+import { types } from '../actions';
 
 const {
   CREATE_MEDIA,
@@ -15,7 +15,7 @@ const DEFAULT_STATE = {
   loading: false
 };
 
-const mediaReducer = (state = DEFAULT_STATE, {type, payload}) => {
+const mediaReducer = (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
   case GET_MEDIA:
     return {
@@ -27,13 +27,13 @@ const mediaReducer = (state = DEFAULT_STATE, {type, payload}) => {
       ...state,
       loading: payload
     };
-  case GET_SINGLE_MEDIA: 
+  case GET_SINGLE_MEDIA:
     return {
       ...state,
-      item: {...payload}
+      item: { ...payload }
     };
   default:
-    return {...state};
+    return { ...state };
   }
 };
 

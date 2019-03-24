@@ -11,4 +11,3 @@ export const GET_SINGLE_MEDIA = 'GET_SINGLE_MEDIA';
 export const UPDATE_MEDIA = 'UPDATE_MEDIA';
 export const DELETE_MEDIA = 'DELETE_MEDIA';
 export const LOADING_MEDIA = 'LOADING_MEDIA';
-

@@ -6,21 +6,20 @@ import { getProjects } from '../actions';
 import { withRouter, matchPath } from 'react-router-dom';
 import MobileDropdown from './MobileDropdown';
 
-
 const Nav = styled.nav`
-    height: 90px;
-    padding: 20px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: ${props => props.theme.gray};
-    box-shadow: 0px -1px 4px 2px rgba(0,0,0,0.2);
-    z-index: 5;
-    @media screen and (max-width: 768px) {
-      padding: 20px 16px
-    }
+  height: 90px;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: ${props => props.theme.gray};
+  box-shadow: 0px -1px 4px 2px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  @media screen and (max-width: 768px) {
+    padding: 20px 16px;
+  }
 `;
 const Logo = styled.img`
   vertical-align: middle;
@@ -66,7 +65,7 @@ const MenuItemHelper = styled.li`
   position: relative;
   padding-top: 4px;
   &::before {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     left: 0;
@@ -74,16 +73,16 @@ const MenuItemHelper = styled.li`
     width: 0%;
     background-color: ${props => props.theme.secondary};
     transition: all 0.25s ease-in-out;
-    z-index: -1
+    z-index: -1;
   }
   &:hover {
     background-color: ${props => props.theme.secondary};
     > * {
       display: block;
     }
-  }  
+  }
   &:last-child {
-      border-right: none;
+    border-right: none;
   }
   transition: all 0.225s ease-in-out;
 `;
@@ -102,13 +101,13 @@ const Hamburger = styled.div`
 `;
 
 const Dropdown = styled.div`
- position: absolute;
- display: none;
- top: 100%;
- width: 100%;
- background-color: ${props => props.theme.white};
- left: 50%;
- transform: translateX(-50%);
+  position: absolute;
+  display: none;
+  top: 100%;
+  width: 100%;
+  background-color: ${props => props.theme.white};
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const DropdownItem = styled.div`
@@ -116,13 +115,13 @@ const DropdownItem = styled.div`
   position: relative;
   padding: 8px 0;
   &::after {
-    content: ' ';
+    content: " ";
     position: absolute;
     bottom: 2px;
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    border-bottom: ${props => props.noBorder ? 'none' : '1px solid black'};
+    border-bottom: ${props => (props.noBorder ? 'none' : '1px solid black')};
   }
   &:hover {
     background-color: #f0f0f0;
@@ -133,7 +132,7 @@ const FAB = styled.div`
   position: fixed;
   bottom: 16px;
   right: 16px;
-  box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
   border-radius: 100%;
   padding: 14px;
   background-color: ${props => props.theme.secondary};
@@ -149,7 +148,7 @@ const FAB = styled.div`
     width: 32px;
     filter: invert(1);
   }
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px) {
     padding: 12px;
     img {
       height: 28px;
@@ -161,82 +160,66 @@ const FAB = styled.div`
 class Navbar extends React.Component {
   state = {
     open: false
-  }
+  };
   componentDidMount() {
     this.props.getProjects();
   }
-  componentWillUnmount() {
-
-  }
+  componentWillUnmount() {}
   toggleMenu = () => {
-    this.setState(state => (
-      {
-        open: !state.open
-      }
-    ));
-  }
-  scrollToInfo = (e) => {
+    this.setState(state => ({
+      open: !state.open
+    }));
+  };
+  scrollToInfo = e => {
     e.preventDefault();
     e.stopPropagation();
     window.scrollTo(0, document.body.scrollHeight);
-  }
+  };
   render() {
     return (
       <>
         <FAB onClick={this.scrollToInfo}>
           <img
-            alt='Ícone de conversa'
+            alt="Ícone de conversa"
             src={require('../assets/images/comment-solid.svg')}
           />
         </FAB>
         <Nav {...this.props}>
-          <Link to='/'>
+          <Link to="/">
             <Logo
-              alt='Logo da empresa Lagar Design e Arquitetura'
+              alt="Logo da empresa Lagar Design e Arquitetura"
               src={require('../assets/images/lagar_logo_horizontal.svg')}
             />
           </Link>
           <Menu>
             <MenuItem
               exact
-              path='/projetos/:type?'
+              path="/projetos/:type?"
             >
-              <Link to='/projetos'>
-              projetos
-              </Link>
+              <Link to="/projetos">projetos</Link>
               <Dropdown>
-                <Link to='/projetos'>
-                  <DropdownItem>
-                    Todos
-                  </DropdownItem>
+                <Link to="/projetos">
+                  <DropdownItem>Todos</DropdownItem>
                 </Link>
-                <Link to='/projetos/comercial'>
-                  <DropdownItem>
-                    Comercial
-                  </DropdownItem>
+                <Link to="/projetos/comercial">
+                  <DropdownItem>Comercial</DropdownItem>
                 </Link>
-                <Link to='/projetos/residencial'>
-                  <DropdownItem noBorder>
-                    Residencial
-                  </DropdownItem>
+                <Link to="/projetos/residencial">
+                  <DropdownItem noBorder>Residencial</DropdownItem>
                 </Link>
               </Dropdown>
             </MenuItem>
             <MenuItem
               exact
-              path='/escritorio'
+              path="/escritorio"
             >
-              <Link to='/escritorio'>
-                escritório
-              </Link>
+              <Link to="/escritorio">escritório</Link>
             </MenuItem>
             <MenuItem
               exact
-              path='/midia'
+              path="/midia"
             >
-              <Link to='/midia'>
-                mídia
-              </Link>
+              <Link to="/midia">mídia</Link>
             </MenuItem>
           </Menu>
           <Hamburger
@@ -259,4 +242,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = ({ projectReducer }) => ({ ...projectReducer });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(Navbar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTheme(Navbar));

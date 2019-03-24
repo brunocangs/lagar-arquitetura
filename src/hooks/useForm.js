@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
-const useForm = (state) => {
+const useForm = state => {
   const [field, setField] = useState(state);
-  const setFormState = ({target:{value}}) => setField(value);
+  const setFormState = ({ target: { value } }) => setField(value);
   return [field, setFormState];
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
-import {Navbar, NotFound, Footer} from '../components';
+import { Route } from 'react-router-dom';
+import { Navbar, NotFound, Footer } from '../components';
 import Main from '../views/main';
 import Project from '../views/project';
 import SwitchBoundary from '../components/SwitchBoundary';
@@ -12,61 +12,61 @@ import { Dashboard } from '../views/management';
 class Routes extends React.Component {
   state = {
     footer: React.createRef()
-  }
+  };
   render() {
     return (
       <>
-        <Route 
-          component={(props) => (
+        <Route
+          component={props => (
             <Navbar
               {...props}
               footer={this.state.footer}
             />
           )}
-          path='*'
+          path="*"
         />
         <SwitchBoundary>
-          <Route 
+          <Route
             component={Main}
             exact
-            path='/'
+            path="/"
           />
-          <Route 
+          <Route
             exact
-            path='/projetos/:type?'
-            render={(props) => <Main {...props} />}
+            path="/projetos/:type?"
+            render={props => <Main {...props} />}
           />
-          <Route 
+          <Route
             component={Project}
             exact
             path={'/projeto/:id'}
           />
-          <Route 
+          <Route
             component={OfficeView}
-            path='/escritorio'
+            path="/escritorio"
           />
           <Route
             component={Media}
-            path='/midia'
+            path="/midia"
           />
           <RequireAuth
             component={Dashboard}
             exact
-            path='/gerencia'
+            path="/gerencia"
           />
           <Route
             component={NotFound}
-            path='*'
+            path="*"
           />
         </SwitchBoundary>
-        <Route 
-          component={(props) => (
-            <Footer 
+        <Route
+          component={props => (
+            <Footer
               {...props}
               ref={this.state.footer}
             />
           )}
-          path='*'
+          path="*"
         />
       </>
     );

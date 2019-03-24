@@ -6,7 +6,6 @@ import { getProjects, getMedia } from '../../actions';
 
 const Wrapper = styled.div`
     padding-top: 64px;
-    text-align: center;
     width: 90%;
     margin: auto;
     min-height: calc(100vh - 90px);

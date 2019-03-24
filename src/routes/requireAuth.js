@@ -1,12 +1,9 @@
 import firebase from '../firebase';
-import React, {useState} from 'react';
-import {Route} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route } from 'react-router-dom';
 import Auth from '../views/auth';
 
-
-
-
-const RequireAuth = (props) => {
+const RequireAuth = props => {
   const [user, setUser] = useState(undefined);
   firebase.auth().onAuthStateChanged(authUser => {
     setUser(authUser);
