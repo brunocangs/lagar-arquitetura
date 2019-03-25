@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Input, Button } from '../../components';
+import { Input, Button, Loading } from '../../components';
 import firebase from '../../firebase';
 import { useForm } from '../../hooks';
 import fbase from 'firebase/app';
@@ -53,7 +53,7 @@ const Auth = () => {
   };
 
   return loading
-    ? <div>loading...</div>
+    ? <Loading />
     : (
       <Wrapper>
         <Title>Verifique sua identidade</Title>

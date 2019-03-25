@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { getProjects } from '../actions';
-import { Link, LagarLogo, ProjectNavigator } from '../components';
+import { Link, LagarLogo, ProjectNavigator, Loading } from '../components';
 
 const fadeIn = keyframes`
   from {
@@ -105,7 +105,7 @@ class Main extends React.Component {
       return (
         <>
           {'type' in this.props.match.params && <ProjectNavigator />}
-          <div style={{ height: 'calc(100vh - 90px)' }}>loading...</div>;
+          <Loading />
         </>
       );
     }

@@ -42,7 +42,7 @@ const Close = styled.div`
 `;
 
 const Modal = props => {
-  const { open, onRequestClose, children } = props;
+  const { open, onRequestClose, children, transparent } = props;
   useEffect(() => {
     if (open) {
       document.body.style.overflowY = 'hidden';
@@ -53,7 +53,7 @@ const Modal = props => {
   if (!open) return null;
   return (
     <Wrapper onClick={onRequestClose}>
-      <Content>
+      <Content transparent={transparent}>
         <Close onClick={onRequestClose}>x</Close>
         {children}
       </Content>

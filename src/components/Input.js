@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Input = styled.input`
-  padding: 12px 8px;
+  padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid;
   border-color: #ccc;
@@ -31,7 +31,7 @@ const Label = styled.label`
 const TextInput = props => {
   const { label, ...inputProps } = props;
   return (
-    <Wrapper>
+    <Wrapper onClick={(e) => e.stopPropagation()}>
       <Label htmlFor={inputProps.id}>{label}</Label>
       <Input {...inputProps} />
     </Wrapper>

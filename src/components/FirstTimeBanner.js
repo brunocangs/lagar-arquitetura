@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -7,26 +7,43 @@ const Wrapper = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #f0f0f0;
+  display: flex;
+  background-color: #fbfbfb;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9;
+  transition: all 0.3s ease-out, display 0.1s 0.3s ease-out;
+  opacity: ${props => props.show ? 1 : 0};
+  pointer-events: ${props => props.show ? '' : 'none'};
+`;
+
+const Gif = styled.img`
+  max-width: 85%;
+`;
+
+const GrayOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: rgba(0,0,0,${11 / 255});
 `;
 const FirstTimeBanner = () => {
   const [show, setShow] = useState(true);
   const onLoad = () => {
     setTimeout(() => {
       setShow(false);
-    }, 6834);
+    }, 3200);
   };
-  if (process.env.NODE_ENV === 'development') return null;
-  if (!show) return null;
   return (
-    <Wrapper>
-      <img
+    <Wrapper show={show}>
+      <GrayOverlay />
+      <Gif
         onLoad={onLoad}
-        src={require('../assets/images/loading.gif')}
+        src={require('../assets/images/CARREGADO.gif')}
       />
     </Wrapper>
   );

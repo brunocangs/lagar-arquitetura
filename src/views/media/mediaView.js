@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Modal } from '../../components';
+import Lightbox from 'react-images';
+
 const Wrapper = styled.div`
     min-height: calc(100vh - 90px);
     padding: 24px 12px;
@@ -60,15 +62,22 @@ const MediaTitle = styled.h3`
     vertical-align: middle;
   }
 `;
-
+const Preview = styled.img`
+  width: 100%;
+  height: auto;
+  max-height: 90%;
+`;
 const FullMediaItem = ({ item, key, onClick }) => {
   const [dimension, setDimension] = useState(0);
   const onLoad = (e) => {
     const { width, height } = e.target;
     setDimension(width / height);
   };
+  const onImageClick = () => {
+    onClick(item.images.map(img => ({ src: img })));
+  };
   return (
-    <div onClick={onClick}>
+    <div onClick={onImageClick}>
       <MediaItem
         dimension={dimension}
         key={key}
@@ -88,12 +97,22 @@ const MediaView = (props) => {
     prev[index % 2].push(curr);
     return prev;
   }, [[], []]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const onRequestClose = () => {
-    setModalOpen(false);
+  const [currentImages, setCurrentImages] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => {
+    setIsOpen(false);
+    setCurrentImageIndex(0);
   };
-  const onClick= () => {
-    setModalOpen(true);
+  const onClick = (images) => {
+    setIsOpen(true);
+    setCurrentImages(images);
+  };
+  const onClickPrev = () => {
+    setCurrentImageIndex(currentImageIndex - 1);
+  };
+  const onClickNext = () => {
+    setCurrentImageIndex(currentImageIndex + 1);
   };
   return (
     <>
@@ -135,13 +154,15 @@ const MediaView = (props) => {
           })}
         </Col>
       </Wrapper>
-      <Modal
-        onRequestClose={onRequestClose}
-        open={modalOpen}
-        transparent
-      >
-        Hi
-      </Modal>
+      <Lightbox
+        currentImage={currentImageIndex}
+        imageCountSeparator={' de '}
+        images={currentImages}
+        isOpen={isOpen}
+        onClickNext={onClickNext}
+        onClickPrev={onClickPrev}
+        onClose={onClose}
+      />
     </>
   );
 };

@@ -58,7 +58,7 @@ const Row = styled.div`
 `;
 
 const HelpCenter = styled.span`
-  margin-top: ${props => (props.phone ? 0 : 8)}px;
+  margin-top: 8px;
   margin-left: 8px;
   font-size: ${props => (props.phone ? 18 : 24)}px;
 `;
@@ -126,13 +126,13 @@ const Footer = React.forwardRef((props, ref) => (
       <ExternalLink href={'tel://+5532984417138'}>
         <SocialItem>
           <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-          <HelpCenter phone>(32) 98441-7138</HelpCenter>
+          <HelpCenter phone>(32) 98818-1811</HelpCenter>
         </SocialItem>
       </ExternalLink>
       <ExternalLink href={'tel://+5532984417138'}>
         <SocialItem>
           <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-          <HelpCenter phone>(32) 98441-7138</HelpCenter>
+          <HelpCenter phone>(32) 98823-4077</HelpCenter>
         </SocialItem>
       </ExternalLink>
     </Row>
