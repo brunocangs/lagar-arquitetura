@@ -9,22 +9,22 @@ import { Input } from '../../components';
  * fieldType = 'text' | 'images' | 'area'
  * @param {Object} form Form object
  */
-const startState = (form) => {
+const startState = (form, values) => {
   const keys = Object.keys(form);
   const initialState = keys.reduce((prev, curr) => {
     const type = form[curr];
     switch (type) {
     case 'text':
-      prev[curr] = '';
+      prev[curr] = values[curr] || '';
       break;
     case 'images':
-      prev[curr] = [];
+      prev[curr] = values[curr] || [];
       break;
     case 'area':
-      prev[curr] = '';
+      prev[curr] = values[curr] || '';
       break;
     default:
-      prev[curr] = '';
+      prev[curr] = values[curr] || '';
     }
     return prev;
   }, {});
@@ -40,8 +40,8 @@ const startState = (form) => {
 };
 
 const FormBuilder = (props) => {
-  const { form, labels, onStateChange } = props;
-  let [formState, setFormState] = startState(form);
+  const { form, labels, onStateChange, initialState } = props;
+  let [formState, setFormState] = startState(form, initialState);
   useEffect(() => {
     onStateChange(formState);
   }, [formState]);
@@ -58,7 +58,15 @@ const FormBuilder = (props) => {
         />
       );
     default:
-      return null;
+      return (
+        <Input
+          id={fieldName}
+          key={index}
+          label={labels[fieldName]}
+          onChange={setFormState}
+          value={formState[fieldName]}
+        />
+      );
     }
   };
   const fields = Object.keys(form);

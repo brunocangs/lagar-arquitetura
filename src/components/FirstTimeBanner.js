@@ -38,6 +38,7 @@ const FirstTimeBanner = () => {
       setShow(false);
     }, 3200);
   };
+  if (process.env.NODE_ENV === 'development') return null;
   return (
     <Wrapper show={show}>
       <GrayOverlay />

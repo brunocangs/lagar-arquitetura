@@ -1,10 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { useForm } from '../../hooks';
 import { getProjects, getMedia } from '../../actions';
-import { Input, Loading } from '../../components';
+import { Input, Loading, Button } from '../../components';
 import FormBuilder from './formBuilder';
+
+const projectForm = {
+  'name': 'text',
+  'description': 'area',
+  'firstPage': 'toggle',
+  'photos': 'images',
+};
+
+const projectLabels = {
+  'description': 'Descrição',
+  'firstPage': 'Mostrar na primeira página',
+  'name': 'Nome',
+  'photos': 'Imagens'
+};
+
+const mediaForm = {
+  'title': 'text',
+  'subtitle': 'text',
+  'images': 'images'
+};
+
+const mediaLabels = {
+  'title': 'Nome',
+  'subtitle': 'Subtítulo',
+  'images': 'Imagens'
+};
 
 const Wrapper = styled.div`
     padding-top: 64px;
@@ -30,12 +56,25 @@ const ListItemContent = styled.div`
   max-height: 0;
   overflow: hidden;
   width: 100%;
+  display: flex;  
   transition: all 0.15s ease-in-out;
+  flex-wrap: wrap;
+  & > div {
+    flex-basis: 45%;
+    margin-bottom: 8px;
+    :nth-child(2n) {
+      margin-left: 4px;
+    }
+    :nth-child(n) {
+      margin-right: 4px;
+    }
+  }
 `;
 
 const ListItem = styled.li`
   padding: 8px 16px 6px 16px;
   display: flex;
+  position: relative;
   flex-direction: column;
   cursor: pointer;
   align-items: flex-start;
@@ -45,7 +84,7 @@ const ListItem = styled.li`
   ${props => props.open ? `
   margin: 12px 0;
   border-radius: 6px;
-  box-shadow: 1px 1px 5px 2px rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.15);
   ${ListItemContent} {
     max-height: 250px;
     margin-top: 16px;
@@ -69,30 +108,68 @@ const ListItemTitle = styled.h3`
   }
 `;
 
+const ButtonsContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-basis: 100%;
+  justify-content: flex-end;
+`;
+const Delete = styled(Button)`
+  background-color: #ce2929;
+  margin-right: 6px;
+`;
+
 const ListItemForm = (props) => {
-  const { item, onItemClick, open } = props;
+  const { item, onItemClick, open, isProject } = props;
+  const listItem = useRef(null);
+  useEffect(() => {
+    const { current } = listItem;
+    const next = current.nextSibling;
+    const prev = current.previousSibling;
+    if (open) {
+      if (next) {
+        next.style.borderTopLeftRadius = '6px';
+        next.style.borderTopRightRadius = '6px';
+      }
+      if (prev) {
+        prev.style.borderBottomLeftRadius = '6px';
+        prev.style.borderBottomRightRadius = '6px';
+      }
+    } else {
+      if (next) {
+        next.style.borderTopLeftRadius = '';
+        next.style.borderTopRightRadius = '';
+      }
+      if (prev) {
+        prev.style.borderBottomLeftRadius = '';
+        prev.style.borderBottomRightRadius = '';
+      }
+    }
+  }, [open]);
   return (
     <ListItem
       onClick={onItemClick(item)}
       open={open}
+      ref={listItem}
     >
       <ListItemTitle>
         {item.title || item.name}
       </ListItemTitle>
       <ListItemContent>
         <FormBuilder
-          form={{
-            'test': 'text',
-            'other': 'text',
-            'lala': 'text'
-          }}
-          labels={{
-            'test': 'Teste',
-            'other': 'Outro',
-            'lala': 'Boop'
-          }}
+          form={isProject ? projectForm : mediaForm}
+          initialState={item}
+          labels={isProject ? projectLabels : mediaLabels}
           onStateChange={() => { }}
         />
+        <ButtonsContainer>
+          <Delete>
+            Deletar
+          </Delete>
+          <Button>
+            Salvar
+          </Button>
+        </ButtonsContainer>
       </ListItemContent>
     </ListItem>
   );
@@ -117,9 +194,10 @@ const Dashboard = (props) => {
     <Wrapper>
       <Title>Projetos</Title>
       <List>
-        {projects.map((item, i) => {
+        {[{ id: 'newProject', title: 'Novo Projeto' }].concat(projects).map((item, i) => {
           return (
             <ListItemForm
+              isProject
               item={item}
               key={i}
               onItemClick={onItemClick}
@@ -130,9 +208,10 @@ const Dashboard = (props) => {
       </List>
       <Title>Mídia</Title>
       <List>
-        {media.map((item, i) => {
+        {[{ id: 'newMedia', name: 'Nova Mídia' }].concat(media).map((item, i) => {
           return (
             <ListItemForm
+              isProject={false}
               item={item}
               key={i}
               onItemClick={onItemClick}
