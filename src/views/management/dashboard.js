@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { useForm } from '../../hooks';
 import { getProjects, getMedia } from '../../actions';
-import { Input, Loading, Button } from '../../components';
+import { Loading, Button } from '../../components';
 import FormBuilder from './formBuilder';
 
 const projectForm = {
   'name': 'text',
-  'description': 'area',
   'firstPage': 'toggle',
+  'description': 'area',
   'photos': 'images',
 };
 
@@ -60,14 +59,8 @@ const ListItemContent = styled.div`
   transition: all 0.15s ease-in-out;
   flex-wrap: wrap;
   & > div {
-    flex-basis: 45%;
-    margin-bottom: 8px;
-    :nth-child(2n) {
-      margin-left: 4px;
-    }
-    :nth-child(n) {
-      margin-right: 4px;
-    }
+    flex-basis: 51%;
+    margin-bottom: 14px;
   }
 `;
 
@@ -86,7 +79,7 @@ const ListItem = styled.li`
   border-radius: 6px;
   box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.15);
   ${ListItemContent} {
-    max-height: 250px;
+    max-height: ${props.maxHeight}px;
     margin-top: 16px;
   }
   ` : ''}
@@ -122,6 +115,8 @@ const Delete = styled(Button)`
 const ListItemForm = (props) => {
   const { item, onItemClick, open, isProject } = props;
   const listItem = useRef(null);
+  const [maxHeight, setMaxHeight] = useState(200);
+  const content = useRef(null);
   useEffect(() => {
     const { current } = listItem;
     const next = current.nextSibling;
@@ -146,8 +141,17 @@ const ListItemForm = (props) => {
       }
     }
   }, [open]);
+  useEffect(() => {
+    const listener = () => {
+      setMaxHeight(content.current.scrollHeight + 10);
+    };
+    window.addEventListener('resize', listener);
+    setMaxHeight(content.current.scrollHeight + 10);
+    return () => window.removeEventListener('resize', listener);
+  }, [content]);
   return (
     <ListItem
+      maxHeight={maxHeight}
       onClick={onItemClick(item)}
       open={open}
       ref={listItem}
@@ -155,7 +159,7 @@ const ListItemForm = (props) => {
       <ListItemTitle>
         {item.title || item.name}
       </ListItemTitle>
-      <ListItemContent>
+      <ListItemContent ref={content}>
         <FormBuilder
           form={isProject ? projectForm : mediaForm}
           initialState={item}

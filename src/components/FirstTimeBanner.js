@@ -14,8 +14,8 @@ const Wrapper = styled.div`
   align-items: center;
   z-index: 9;
   transition: all 0.3s ease-out, display 0.1s 0.3s ease-out;
-  opacity: ${props => props.show ? 1 : 0};
-  pointer-events: ${props => props.show ? '' : 'none'};
+  opacity: ${props => (props.show ? 1 : 0)};
+  pointer-events: ${props => (props.show ? '' : 'none')};
 `;
 
 const Gif = styled.img`
@@ -29,7 +29,7 @@ const GrayOverlay = styled.div`
   right: 0;
   bottom: 0;
   z-index: 2;
-  background-color: rgba(0,0,0,${11 / 255});
+  background-color: rgba(0, 0, 0, ${11 / 255});
 `;
 const FirstTimeBanner = () => {
   const [show, setShow] = useState(true);

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+const Input = styled.textarea`
   padding: 6px 8px;
   border-radius: 6px;
   border: 1px solid;
@@ -14,35 +14,29 @@ const Input = styled.input`
   }
   transition: border-color 0.2s ease-in;
   outline-width: 0;
-  width: ${props => (props.type === 'checkbox' ? 'auto' : '100%')};
+  height: 180px;
+  width: 100%;
 `;
 const Wrapper = styled.div`
   position: relative;
   flex: 1;
   display: flex;
-  flex-direction: ${props =>
-    props.type === 'checkbox' ? 'row-reverse' : 'column'};
-  justify-content: ${props =>
-    props.type === 'checkbox' ? 'flex-end' : 'flex-start'};
-  align-items: ${props =>
-    props.type === 'checkbox' ? 'center' : 'flex-start'};
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const Label = styled.label`
   font-size: 0.9em;
 `;
 
-const TextInput = props => {
+const TextArea = props => {
   const { label, ...inputProps } = props;
   return (
-    <Wrapper
-      onClick={e => e.stopPropagation()}
-      type={inputProps.type}
-    >
+    <Wrapper onClick={e => e.stopPropagation()}>
       <Label htmlFor={inputProps.id}>{label}</Label>
       <Input {...inputProps} />
     </Wrapper>
   );
 };
 
-export default TextInput;
+export default TextArea;

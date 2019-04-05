@@ -2,6 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import Swipeable from 'react-swipeable-views';
 import { Link } from '../../components';
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
+
+const ArrowLeft = styled(GoChevronLeft)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  cursor: pointer;
+  color: white;
+  height: 56px;
+  width: 56px;
+`;
+
+const ArrowRight = styled(GoChevronRight)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 24px;
+  cursor: pointer;
+  color: white;
+  height: 56px;
+  width: 56px;
+`;
 
 const Photo = styled.div`
     width: 100%;
@@ -115,6 +138,17 @@ export default class ProjectView extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  next = () => {
+    const { length } = this.props.project.photos;
+    this.setState(prev => ({ index: (prev.index + 1) % length }));
+  }
+  prev = () => {
+    const { length } = this.props.project.photos;
+    this.setState(prev => ({ index: (prev.index - 1 + length) % length }));
+  }
+  scrollToBottom = () => {
+    window && window.scrollTo(0, 9999);
+  }
   componentDidUpdate(prevProps) {
     if (prevProps.project.id !== this.props.project.id) {
       window.scrollTo(0, 0);
@@ -139,25 +173,32 @@ export default class ProjectView extends React.Component {
               })
             }
           </MarkerWrapper>
-          <Swipeable
-            enableMouseEvents
-            index={this.state.index}
-            onChangeIndex={(index) => this.setState({ index })}
-          >
-            {project.photos.map((photo, i) => {
-              return (
-                <Photo
-                  key={i}
-                  url={photo.url}
-                />
-              );
-            })}
-          </Swipeable>
+          <PhotoWrapper>
+            <Swipeable
+              enableMouseEvents
+              index={this.state.index}
+              onChangeIndex={(index) => this.setState({ index })}
+            >
+              {project.photos.map((photo, i) => {
+                return (
+                  <Photo
+                    key={i}
+                    url={photo.url}
+                  >
+                  </Photo>
+                );
+              })}
+            </Swipeable>
+            <ArrowLeft onClick={this.prev} /> <ArrowRight onClick={this.next} />
+          </PhotoWrapper>
           <Content>
             <Title>{project.name}</Title>
             <Description>{project.description}</Description>
           </Content>
-          <Contact tabIndex={0}>
+          <Contact
+            onClick={this.scrollToBottom}
+            tabIndex={0}
+          >
             Entrar em contato
           </Contact>
         </PhotoWrapper>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Modal } from '../../components';
 import Lightbox from 'react-images';
 
 const Wrapper = styled.div`

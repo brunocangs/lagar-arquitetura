@@ -10,3 +10,6 @@ export { default as Button } from './Button';
 export { default as FirstTimeBanner } from './FirstTimeBanner';
 export { default as Modal } from './Modal';
 export { default as Loading } from './Loading';
+export { default as TextArea } from './TextArea';
+export { default as ImagePicker } from './ImagePicker';
+export { default as Checkbox } from './Checkbox';

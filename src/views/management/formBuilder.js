@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Input } from '../../components';
+// import styled from 'styled-components';
+import { Input, TextArea, ImagePicker, Checkbox } from '../../components';
 /**
  * {
  *   'fieldName': 'fieldType',
@@ -30,19 +30,20 @@ const startState = (form, values) => {
   }, {});
   let [state, setState] = useState(initialState);
   const alterState = ({ target: { id, value } }) => {
+    console.log(id, value);
     setState({
       ...state,
       [id]: value
     });
   };
   return [state, alterState];
-
 };
 
-const FormBuilder = (props) => {
+const FormBuilder = props => {
   const { form, labels, onStateChange, initialState } = props;
   let [formState, setFormState] = startState(form, initialState);
   useEffect(() => {
+    console.log(formState);
     onStateChange(formState);
   }, [formState]);
   const resolveField = (fieldName, fieldType, index) => {
@@ -55,6 +56,35 @@ const FormBuilder = (props) => {
           label={labels[fieldName]}
           onChange={setFormState}
           value={formState[fieldName]}
+        />
+      );
+    case 'area':
+      return (
+        <TextArea
+          id={fieldName}
+          key={index}
+          label={labels[fieldName]}
+          onChange={setFormState}
+          type="area"
+          value={formState[fieldName]}
+        />
+      );
+    case 'toggle':
+      return (
+        <Checkbox
+          id={fieldName}
+          key={index}
+          label={labels[fieldName]}
+          onChange={setFormState}
+          type={'checkbox'}
+          value={formState[fieldName]}
+        />
+      );
+    case 'images':
+      return (
+        <ImagePicker
+          images={formState[fieldName]}
+          onImagesSelect={console.log}
         />
       );
     default:
