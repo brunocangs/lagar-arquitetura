@@ -127,7 +127,7 @@ class Main extends React.Component {
         >
           <Link
             to={{
-              pathname: `/projeto/${project.id}`,
+              pathname: `/projeto/${project.slug}`,
               state: { project }
             }}
           >
