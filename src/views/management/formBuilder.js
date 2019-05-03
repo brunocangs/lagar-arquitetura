@@ -30,7 +30,6 @@ const startState = (form, values) => {
   }, {});
   let [state, setState] = useState(initialState);
   const alterState = ({ target: { id, value } }) => {
-    console.log(id, value);
     setState({
       ...state,
       [id]: value
@@ -43,7 +42,6 @@ const FormBuilder = props => {
   const { form, labels, onStateChange, initialState } = props;
   let [formState, setFormState] = startState(form, initialState);
   useEffect(() => {
-    console.log(formState);
     onStateChange(formState);
   }, [formState]);
   const resolveField = (fieldName, fieldType, index) => {
@@ -83,8 +81,10 @@ const FormBuilder = props => {
     case 'images':
       return (
         <ImagePicker
+          id={fieldName}
           images={formState[fieldName]}
-          onImagesSelect={console.log}
+          key={index}
+          onChange={setFormState}
         />
       );
     default:

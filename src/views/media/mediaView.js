@@ -61,11 +61,6 @@ const MediaTitle = styled.h3`
     vertical-align: middle;
   }
 `;
-const Preview = styled.img`
-  width: 100%;
-  height: auto;
-  max-height: 90%;
-`;
 const FullMediaItem = ({ item, key, onClick }) => {
   const [dimension, setDimension] = useState(0);
   const onLoad = (e) => {
@@ -73,7 +68,7 @@ const FullMediaItem = ({ item, key, onClick }) => {
     setDimension(width / height);
   };
   const onImageClick = () => {
-    onClick(item.images.map(img => ({ src: img })));
+    onClick(item.images.map(img => ({ src: img.url })));
   };
   return (
     <div onClick={onImageClick}>
@@ -83,10 +78,10 @@ const FullMediaItem = ({ item, key, onClick }) => {
       >
         <MediaImage
           onLoad={onLoad}
-          src={item.images[0]}
+          src={item.images[0].url}
         />
       </MediaItem>
-      <MediaTitle date={`${monthMap[item.month]} de ${item.year}`}>{item.title}</MediaTitle>
+      <MediaTitle date={item.subtitle}>{item.title}</MediaTitle>
     </div>
   );
 };

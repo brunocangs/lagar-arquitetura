@@ -94,8 +94,8 @@ class Main extends React.Component {
     }
   }
   getProjects() {
-    if (this.props.match.params.type) {
-      this.props.getProjects({ type: this.props.match.params.type });
+    if ('type' in this.props.match.params) {
+      this.props.getProjects(this.props.match.params.type ? { [this.props.match.params.type]: true } : undefined);
     } else {
       this.props.getProjects({ firstPage: true });
     }

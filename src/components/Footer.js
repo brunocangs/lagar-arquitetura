@@ -6,7 +6,7 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps';
-
+import { IoIosPin } from 'react-icons/io';
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap
@@ -75,7 +75,7 @@ const ExternalLink = styled.a`
 
 const MapWrapper = styled.div`
   margin: 0 -30px;
-  height: 400px;
+  height: 300px;
   @media (max-width: 768px) {
     margin: 0 -12px;
   }
@@ -86,57 +86,70 @@ const Title = styled.p`
   text-align: center;
 `;
 
-const Footer = React.forwardRef((props, ref) => (
-  <Wrapper ref={ref}>
-    <Title>Sobre nós</Title>
-    <MyMapComponent
-      containerElement={<MapWrapper />}
-      googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDN1b5PfPhFgStwLvIR71Y9w6IUM52EIhc"
-      isMarkerShown
-      loadingElement={<div style={{ height: '100%' }} />}
-      mapElement={<div style={{ height: '100%' }} />}
-    />
-    <Row>
-      <ExternalLink
-        href={'https://instagram.com/lagar.arq'}
-        target="_blank"
-      >
-        <SocialItem>
-          <i className="icon icon-instagram icon-bg-circle icon-bg-black" />
-          <HelpCenter>@lagar.arq</HelpCenter>
-        </SocialItem>
-      </ExternalLink>
-      <ExternalLink
-        href={'https://facebook.com/lagar.arq'}
-        target="_blank"
-      >
-        <SocialItem noMargin>
-          <i className="icon icon-facebook icon-bg-circle icon-bg-black" />
-          <HelpCenter>/lagar.arq</HelpCenter>
-        </SocialItem>
-      </ExternalLink>
-    </Row>
-    <Row>
-      <ExternalLink href={'tel://+5532984417138'}>
-        <SocialItem>
-          <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-          <HelpCenter phone>(32) 98441-7138</HelpCenter>
-        </SocialItem>
-      </ExternalLink>
-      <ExternalLink href={'tel://+5532984417138'}>
-        <SocialItem>
-          <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-          <HelpCenter phone>(32) 98818-1811</HelpCenter>
-        </SocialItem>
-      </ExternalLink>
-      <ExternalLink href={'tel://+5532984417138'}>
-        <SocialItem>
-          <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-          <HelpCenter phone>(32) 98823-4077</HelpCenter>
-        </SocialItem>
-      </ExternalLink>
-    </Row>
-  </Wrapper>
-));
+const Footer = React.forwardRef((props, ref) => {
+  console.log(props);
+  return (
+    <Wrapper ref={ref}>
+      <Title>Sobre nós</Title>
+      {props.match.url === '/' && <MyMapComponent
+        containerElement={<MapWrapper />}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDN1b5PfPhFgStwLvIR71Y9w6IUM52EIhc"
+        isMarkerShown
+        loadingElement={<div style={{ height: '100%' }} />}
+        mapElement={<div style={{ height: '100%' }} />}
+      />}
+      <Row>
+        <ExternalLink
+          href={'https://instagram.com/lagar.arq'}
+          target="_blank"
+        >
+          <SocialItem>
+            <i className="icon icon-instagram icon-bg-circle icon-bg-black" />
+            <HelpCenter>@lagar.arq</HelpCenter>
+          </SocialItem>
+        </ExternalLink>
+        <ExternalLink
+          href={'https://facebook.com/lagar.arq'}
+          target="_blank"
+        >
+          <SocialItem noMargin>
+            <i className="icon icon-facebook icon-bg-circle icon-bg-black" />
+            <HelpCenter>/lagar.arq</HelpCenter>
+          </SocialItem>
+        </ExternalLink>
+      </Row>
+      <Row>
+        <ExternalLink href={'tel://+5532984417138'}>
+          <SocialItem>
+            <i className="icon icon-phone icon-bg-circle icon-bg-black" />
+            <HelpCenter phone>(32) 98441-7138</HelpCenter>
+          </SocialItem>
+        </ExternalLink>
+        <ExternalLink href={'tel://+5532984417138'}>
+          <SocialItem>
+            <i className="icon icon-phone icon-bg-circle icon-bg-black" />
+            <HelpCenter phone>(32) 98818-1811</HelpCenter>
+          </SocialItem>
+        </ExternalLink>
+        <ExternalLink href={'tel://+5532984417138'}>
+          <SocialItem>
+            <i className="icon icon-phone icon-bg-circle icon-bg-black" />
+            <HelpCenter phone>(32) 98823-4077</HelpCenter>
+          </SocialItem>
+        </ExternalLink>
+      </Row>
+      <Row>
+        <ExternalLink href={'tel://+5532984417138'}>
+          <SocialItem>
+            <IoIosPin
+              style={{ fontSize: 28, padding: 4, borderRadius: '100%', background: 'black', color: 'white' }}
+            />
+            <HelpCenter phone>Avenida Independência, 111</HelpCenter>
+          </SocialItem>
+        </ExternalLink>
+      </Row>
+    </Wrapper>
+  );
+});
 
 export default Footer;

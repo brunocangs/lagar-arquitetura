@@ -1,17 +1,17 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {getProject} from '../../actions';
+import { connect } from 'react-redux';
+import { getProject } from '../../actions';
 import ProjectView from './projectView';
 
 class ProjectContainer extends React.Component {
-  componentWillMount () {
-    if (!this.props.project || !this.props.project.id) {
-      this.props.getProject({id: this.props.match.params.id});
+  componentWillMount() {
+    if (!this.props.project || !this.props.project.slug) {
+      this.props.getProject({ slug: this.props.match.params.slug });
     }
   }
-  render() { 
+  render() {
     return (
-      <ProjectView 
+      <ProjectView
         nextProject={this.props.nextProject}
         project={this.props.project}
       />
@@ -39,6 +39,6 @@ const mapDispatchToProps = {
   getProject
 };
 
-const mapStateToProps = ({projectsReducer}) => ({...projectsReducer});
+const mapStateToProps = ({ projectsReducer }) => ({ ...projectsReducer });
 
 export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ProjectContainer);

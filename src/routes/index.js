@@ -45,10 +45,10 @@ class Routes extends React.Component {
             component={OfficeView}
             path="/escritorio"
           />
-          <Route
+          {/* <Route
             component={Media}
             path="/midia"
-          />
+          /> */}
           <RequireAuth
             component={Dashboard}
             exact

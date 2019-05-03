@@ -4,9 +4,10 @@ import {
   GET_PROJECTS,
   GET_SINGLE_PROJECT,
   UPDATE_PROJECTS,
-  LOADING_PROJECTS
+  LOADING_PROJECTS,
 } from './types';
 import { projects } from '../data';
+import slugify from 'slugify';
 
 export const getProjects = filter => dispatch => {
   dispatch({ type: LOADING_PROJECTS, payload: true });
@@ -48,5 +49,33 @@ export const getProject = searchObject => async (dispatch, getState) => {
       ...result.data(),
       id: result.id
     }
+  });
+};
+
+export const deleteProject = ({ id, title, name }) => (dispatch) => {
+  dispatch({ type: LOADING_PROJECTS, payload: true });
+  if (window.confirm(`Deseja deletar ${name || title}?\nEsta ação é irreversível.`)) {
+    projects.doc(id).delete().then(() => {
+      dispatch({ type: DELETE_PROJECTS, payload: id });
+      dispatch({ type: LOADING_PROJECTS, payload: false });
+    });
+  }
+};
+
+export const updateProject = (fields) => dispatch => {
+  dispatch({ type: LOADING_PROJECTS, payload: true });
+  fields.slug = slugify(fields.name, { lower: true });
+  if (fields.id === 'newProject') {
+    const { id, ...data } = fields;
+    return projects.add(data).then(snap => {
+      return snap.get();
+    }).then(data => {
+      dispatch({ type: CREATE_PROJECTS, payload: data });
+      dispatch({ type: LOADING_PROJECTS, payload: false });
+    });
+  }
+  projects.doc(fields.id).set(fields, { merge: true }).then(() => {
+    dispatch({ type: UPDATE_PROJECTS, payload: fields });
+    dispatch({ type: LOADING_PROJECTS, payload: false });
   });
 };

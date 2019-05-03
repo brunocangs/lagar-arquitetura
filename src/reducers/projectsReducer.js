@@ -17,6 +17,21 @@ const DEFAULT_STATE = {
 
 export default (state = DEFAULT_STATE, { type, payload }) => {
   switch (type) {
+  case CREATE_PROJECTS:
+    return {
+      ...state,
+      items: [...state.items, payload]
+    };
+  case DELETE_PROJECTS:
+    return {
+      ...state,
+      items: state.items.filter(item => item.id === payload)
+    };
+  case UPDATE_PROJECTS:
+    return {
+      ...state,
+      items: state.items.map(item => item.id === payload.id ? payload : item)
+    };
   case GET_PROJECTS:
     return {
       ...state,

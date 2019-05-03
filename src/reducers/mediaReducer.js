@@ -22,6 +22,21 @@ const mediaReducer = (state = DEFAULT_STATE, { type, payload }) => {
       ...state,
       items: [...payload]
     };
+  case CREATE_MEDIA:
+    return {
+      ...state,
+      items: [...state.items, payload]
+    };
+  case DELETE_MEDIA:
+    return {
+      ...state,
+      items: state.items.filter(item => item.id === payload)
+    };
+  case UPDATE_MEDIA:
+    return {
+      ...state,
+      items: state.items.map(item => item.id === payload.id ? payload : item)
+    };
   case LOADING_MEDIA:
     return {
       ...state,

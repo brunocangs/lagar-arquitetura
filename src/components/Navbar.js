@@ -164,7 +164,7 @@ class Navbar extends React.Component {
   componentDidMount() {
     this.props.getProjects();
   }
-  componentWillUnmount() {}
+  componentWillUnmount() { }
   toggleMenu = () => {
     this.setState(state => ({
       open: !state.open
@@ -215,12 +215,12 @@ class Navbar extends React.Component {
             >
               <Link to="/escritorio">escritório</Link>
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               exact
               path="/midia"
             >
               <Link to="/midia">mídia</Link>
-            </MenuItem>
+            </MenuItem> */}
           </Menu>
           <Hamburger
             onClick={this.toggleMenu}

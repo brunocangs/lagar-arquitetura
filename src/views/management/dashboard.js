@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { getProjects, getMedia } from '../../actions';
+import { getProjects, getMedia, deleteMedia, updateMedia, deleteProject, updateProject } from '../../actions';
 import { Loading, Button } from '../../components';
 import FormBuilder from './formBuilder';
 
 const projectForm = {
   'name': 'text',
   'firstPage': 'toggle',
+  'comercial': 'toggle',
+  'residencial': 'toggle',
   'description': 'area',
   'photos': 'images',
 };
@@ -15,6 +17,8 @@ const projectForm = {
 const projectLabels = {
   'description': 'Descrição',
   'firstPage': 'Mostrar na primeira página',
+  'comercial': 'É comercial?',
+  'residencial': 'É residencial?',
   'name': 'Nome',
   'photos': 'Imagens'
 };
@@ -69,7 +73,6 @@ const ListItem = styled.li`
   display: flex;
   position: relative;
   flex-direction: column;
-  cursor: pointer;
   align-items: flex-start;
   justify-content: center;
   transition: all 0.15s ease-in-out;
@@ -94,8 +97,10 @@ const ListItem = styled.li`
 `;
 
 const ListItemTitle = styled.h3`
+  cursor: pointer;
   font-weight: normal;
   margin: 9px 0;
+  width: 100%;  
   :hover {
     color: ${props => props.theme.secondary}
   }
@@ -113,9 +118,10 @@ const Delete = styled(Button)`
 `;
 
 const ListItemForm = (props) => {
-  const { item, onItemClick, open, isProject } = props;
+  const { item, onItemClick, open, isProject, onSave, onDelete } = props;
   const listItem = useRef(null);
   const [maxHeight, setMaxHeight] = useState(200);
+  const [formState, setFormState] = useState({ ...item });
   const content = useRef(null);
   useEffect(() => {
     const { current } = listItem;
@@ -148,29 +154,28 @@ const ListItemForm = (props) => {
     window.addEventListener('resize', listener);
     setMaxHeight(content.current.scrollHeight + 10);
     return () => window.removeEventListener('resize', listener);
-  }, [content]);
+  }, [content, formState]);
   return (
     <ListItem
       maxHeight={maxHeight}
-      onClick={onItemClick(item)}
       open={open}
       ref={listItem}
     >
-      <ListItemTitle>
+      <ListItemTitle onClick={onItemClick(item)}>
         {item.title || item.name}
       </ListItemTitle>
       <ListItemContent ref={content}>
         <FormBuilder
           form={isProject ? projectForm : mediaForm}
-          initialState={item}
+          initialState={formState}
           labels={isProject ? projectLabels : mediaLabels}
-          onStateChange={() => { }}
+          onStateChange={setFormState}
         />
         <ButtonsContainer>
-          <Delete>
+          <Delete onClick={() => onDelete(item)}>
             Deletar
           </Delete>
-          <Button>
+          <Button onClick={() => onSave({ ...formState, id: item.id })}>
             Salvar
           </Button>
         </ButtonsContainer>
@@ -188,7 +193,7 @@ const Dashboard = (props) => {
   };
   useEffect(fetchProjects, [props.projects.length, props.media.length]);
   const [open, setOpen] = useState('');
-  const { loading, projects, media } = props;
+  const { loading, projects, media, updateMedia, deleteMedia, updateProject, deleteProject } = props;
   if (loading) return <Loading />;
   const onItemClick = item => () => {
     if (open === item.id) return setOpen('');
@@ -204,7 +209,9 @@ const Dashboard = (props) => {
               isProject
               item={item}
               key={i}
+              onDelete={deleteProject}
               onItemClick={onItemClick}
+              onSave={updateProject}
               open={open === item.id}
             />
           );
@@ -218,7 +225,9 @@ const Dashboard = (props) => {
               isProject={false}
               item={item}
               key={i}
+              onDelete={deleteMedia}
               onItemClick={onItemClick}
+              onSave={updateMedia}
               open={open === item.id}
             />
           );
@@ -230,7 +239,11 @@ const Dashboard = (props) => {
 
 const mapDispatch = {
   getMedia,
-  getProjects
+  getProjects,
+  deleteMedia,
+  updateMedia,
+  deleteProject,
+  updateProject
 };
 
 const mapStateToProps = ({ mediaReducer, projectsReducer }) => ({
