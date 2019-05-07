@@ -60,6 +60,7 @@ const Row = styled.div`
 const HelpCenter = styled.span`
   margin-top: 8px;
   margin-left: 8px;
+  max-width: 90%;
   font-size: ${props => (props.phone ? 18 : 24)}px;
 `;
 const ExternalLink = styled.a`
@@ -139,12 +140,12 @@ const Footer = React.forwardRef((props, ref) => {
         </ExternalLink>
       </Row>
       <Row>
-        <ExternalLink href={'tel://+5532984417138'}>
+        <ExternalLink href={'https://www.google.com.br/maps/place/Av.+Presidente+Itamar+Franco,+3840+-+1310+-+S%C3%A3o+Mateus,+Juiz+de+Fora+-+MG,+36010-532/@-21.7810989,-43.3638592,17z/data=!3m1!4b1!4m5!3m4!1s0x989b0c4683f277:0x25015fe65b47bc44!8m2!3d-21.7810989!4d-43.3616705'}>
           <SocialItem>
             <IoIosPin
               style={{ fontSize: 28, padding: 4, borderRadius: '100%', background: 'black', color: 'white' }}
             />
-            <HelpCenter phone>Avenida Independência, 111</HelpCenter>
+            <HelpCenter phone>Av. Presidente Itamar Franco, 3840 - Sala 1310 São Mateus <br /> Juiz de Fora - MG/Brasil 36033-318</HelpCenter>
           </SocialItem>
         </ExternalLink>
       </Row>

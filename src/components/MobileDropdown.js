@@ -125,9 +125,9 @@ class MobileDropdown extends React.Component {
           <MenuItem>
             <Link to="/escritorio">Escritório</Link>
           </MenuItem>
-          <MenuItem>
+          {/* <MenuItem>
             <Link to="/midia">Mídia</Link>
-          </MenuItem>
+          </MenuItem> */}
         </Content>
       </Wrapper>
     );

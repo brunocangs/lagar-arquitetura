@@ -119,6 +119,20 @@ class OfficeView extends React.Component {
             </Text>
           </Description>
         </Profile>
+        <br />
+        <br />
+        <br />
+        <Profile>
+          <ImageWrapper>
+            <PersonImage src={require('../../assets/images/full_body_person.png')} />
+          </ImageWrapper>
+          <Description>
+            <Name>Pessoa 3</Name>
+            <Text>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad iure unde tempore quis cumque, rem at aut ullam perferendis velit inventore pariatur fugit ipsum sint! Iusto et iure rerum odit sed sapiente recusandae perspiciatis aliquam, ratione vel ad, impedit, quis dignissimos voluptatum velit alias sint voluptate! Odio culpa, voluptas dolor nobis libero corporis perspiciatis tenetur! Quam temporibus ratione rerum saepe autem magnam atque dignissimos, suscipit, iure, voluptatum ipsam. Esse quod reprehenderit error, iure explicabo enim doloribus non exercitationem veniam aperiam animi, vel assumenda rerum autem quidem modi necessitatibus commodi placeat sapiente voluptates quos pariatur! Labore sed hic fugit dolor aperiam.
+            </Text>
+          </Description>
+        </Profile>
       </Wrapper>
     );
   }
