@@ -88,12 +88,12 @@ html, body {
 .fadeInSlideLeft {
   opacity: 0;
 }
-div:hover > div > svg > path.fadeInSlideRight {
+div.hover-effect > div > svg > path.fadeInSlideRight {
   animation: fadein 0.4s 0.25s ease-in, slideOutRight 0.5s 0.8s ease-in;
   animation-fill-mode: both, forwards;
   transform-origin: center;
 }
-div:hover > div > svg > path.fadeInSlideLeft {
+div.hover-effect > div > svg > path.fadeInSlideLeft {
   animation: fadein 0.4s 0.25s ease-in, slideOutLeft 0.5s 0.8s ease-in;
   animation-fill-mode: both, forwards;
   transform-origin: center;

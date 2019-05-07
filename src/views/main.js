@@ -111,50 +111,10 @@ class Main extends React.Component {
         </>
       );
     }
-    if (!('type' in this.props.match.params)) {
-      return <MainGrid {...this.props} />;
-    }
-    const Banners = this.props.items.map((project, i) => {
-      const mainImage = project.photos.reduce(
-        (prev, curr) => {
-          if (curr.order < prev.order) return curr;
-          return prev;
-        },
-        {
-          url: '',
-          order: Infinity
-        }
-      ).url;
-      return (
-        <Banner
-          key={i}
-          url={mainImage}
-        >
-          <Link
-            to={{
-              pathname: `/projeto/${project.slug}`,
-              state: { project }
-            }}
-          >
-            <TitleWrapper>
-              <Container>
-                <LagarLogo
-                  classNameBottom={'fadeInSlideLeft'}
-                  classNameTop={'fadeInSlideRight'}
-                  size={80}
-                  style={{ height: '100%', zIndex: 2, overflow: 'visible' }}
-                />
-                <Title>{project.name}</Title>
-              </Container>
-            </TitleWrapper>
-          </Link>
-        </Banner>
-      );
-    });
     return (
       <>
         {'type' in this.props.match.params && <ProjectNavigator />}
-        {Banners}
+        <MainGrid {...this.props} />
       </>
     );
   }

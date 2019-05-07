@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { LagarLogo, Link } from '../components';
+import cx from 'classnames';
 
 const Title = styled.p`
   position: absolute;
@@ -20,8 +21,7 @@ const Title = styled.p`
   text-align: center;
   transform-origin: center;
   @media screen and (max-width: 768px) {
-    font-size: 22px;
-    font-weight: 400;
+    font-size: 19px;
   }
 `;
 
@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   align-items: center;
   padding-top: ${props => 1 / props.dimension * 100}%;
   position: relative;
-  &:hover {
+  &.hover-effect {
     ${Title} {
       opacity: 1;
       transform: scale(1);
@@ -65,12 +65,10 @@ const ImageItem = styled.img`
   height: auto;
   filter: brightness(100%);
   transition: all 0.2s linear;
-  &:hover {
+  &.hover-effect {
     filter: brightness(60%);
   }
 `;
-
-
 
 const Overlay = styled.div`
   position: absolute;
@@ -86,10 +84,10 @@ const Overlay = styled.div`
   
 `;
 
-
-
 const Image = (props) => {
   const [dimension, setDimension] = useState(16 / 9);
+  const [isHovered, setIsHovered] = useState(false);
+  const toggleHover = () => setIsHovered(!isHovered);
   const onLoad = (e) => {
     const { width, height } = e.target;
     setDimension(width / height);
@@ -101,15 +99,23 @@ const Image = (props) => {
         state: { project: props.item }
       }}
     >
-      <Wrapper dimension={dimension}>
+      <Wrapper
+        className={cx({ 'hover-effect': isHovered })}
+        dimension={dimension}
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}
+        onTouchEnd={toggleHover}
+        onTouchStart={toggleHover}
+      >
         <ImageItem
+          className={cx({ 'hover-effect': isHovered })}
           onLoad={onLoad}
           src={props.src}
         />
         <Overlay>
           <LagarLogo
-            classNameBottom={'fadeInSlideLeft'}
-            classNameTop={'fadeInSlideRight'}
+            classNameBottom={cx('fadeInSlideLeft', { 'hover-effect': isHovered })}
+            classNameTop={cx('fadeInSlideRight', { 'hover-effect': isHovered })}
             size={80}
             style={{ height: '100%', zIndex: 2, overflow: 'visible' }}
           />
