@@ -3,6 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { getProjects } from '../actions';
 import { Link, LagarLogo, ProjectNavigator, Loading } from '../components';
+import MainGrid from './mainGrid';
+
 
 const fadeIn = keyframes`
   from {
@@ -108,6 +110,9 @@ class Main extends React.Component {
           <Loading />
         </>
       );
+    }
+    if (!('type' in this.props.match.params)) {
+      return <MainGrid {...this.props} />;
     }
     const Banners = this.props.items.map((project, i) => {
       const mainImage = project.photos.reduce(

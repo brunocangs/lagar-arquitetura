@@ -4,6 +4,7 @@ export default props => {
   return (
     <svg
       className={props.className}
+      fill="currentColor"
       height={props.size}
       style={props.style}
       viewBox="0 0 284 284"
