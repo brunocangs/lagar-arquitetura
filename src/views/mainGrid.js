@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { LagarLogo } from '../components';
+import { LagarLogo, Link } from '../components';
 
 const Title = styled.p`
   position: absolute;
@@ -95,27 +95,34 @@ const Image = (props) => {
     setDimension(width / height);
   };
   return (
-    <Wrapper dimension={dimension}>
-      <ImageItem
-        onLoad={onLoad}
-        src={props.src}
-      />
-      <Overlay>
-        <LagarLogo
-          classNameBottom={'fadeInSlideLeft'}
-          classNameTop={'fadeInSlideRight'}
-          size={80}
-          style={{ height: '100%', zIndex: 2, overflow: 'visible' }}
+    <Link
+      to={{
+        pathname: `/projeto/${props.item.slug}`,
+        state: { project: props.item }
+      }}
+    >
+      <Wrapper dimension={dimension}>
+        <ImageItem
+          onLoad={onLoad}
+          src={props.src}
         />
-        <Title>{props.name}</Title>
-      </Overlay>
-    </Wrapper>
+        <Overlay>
+          <LagarLogo
+            classNameBottom={'fadeInSlideLeft'}
+            classNameTop={'fadeInSlideRight'}
+            size={80}
+            style={{ height: '100%', zIndex: 2, overflow: 'visible' }}
+          />
+          <Title>{props.item.name}</Title>
+        </Overlay>
+      </Wrapper>
+    </Link>
   );
 };
 
 const Column = (props) => props.row.map(item => (
   <Image
-    name={item.name}
+    item={item}
     src={item.photos[0].url}
   />
 ));
