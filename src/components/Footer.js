@@ -60,7 +60,7 @@ const Row = styled.div`
 const HelpCenter = styled.span`
   margin-top: 8px;
   margin-left: 8px;
-  max-width: 90%;
+  max-width: 85%;
   font-size: ${props => (props.phone ? 18 : 24)}px;
 `;
 const ExternalLink = styled.a`
