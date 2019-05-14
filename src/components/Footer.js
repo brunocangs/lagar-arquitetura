@@ -123,19 +123,19 @@ const Footer = React.forwardRef((props, ref) => {
         <ExternalLink href={'tel://+5532984417138'}>
           <SocialItem>
             <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-            <HelpCenter phone>(32) 98441-7138</HelpCenter>
+            <HelpCenter phone>+55 32 98441-7138</HelpCenter>
           </SocialItem>
         </ExternalLink>
         <ExternalLink href={'tel://+5532984417138'}>
           <SocialItem>
             <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-            <HelpCenter phone>(32) 98818-1811</HelpCenter>
+            <HelpCenter phone>+55 32 98818-1811</HelpCenter>
           </SocialItem>
         </ExternalLink>
         <ExternalLink href={'tel://+5532984417138'}>
           <SocialItem>
             <i className="icon icon-phone icon-bg-circle icon-bg-black" />
-            <HelpCenter phone>(32) 98823-4077</HelpCenter>
+            <HelpCenter phone>+55 32 98823-4077</HelpCenter>
           </SocialItem>
         </ExternalLink>
       </Row>
